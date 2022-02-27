@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'uphill', // the ID of the room the player starts in
+  roomId: 'beginning', // the ID of the room the player starts in
   helpCommands: ['look (at)', 'open', 'use', 'feel'],
   player: {
     hp: 100,
