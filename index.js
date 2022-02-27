@@ -57,7 +57,9 @@ let init = (disk) => {
         *Type **inv** to see your inventory.*
         *Type **help** to see available commands.*`);
       },
-      onUse: () => println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`),
+      onUse: () => {
+        println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
+      },
       onSwing: () => {
         initializedDisk.inventory = initializedDisk.inventory.filter(item => item.name !== 'Henki')
         toHel(`It's all foggy and cold.
@@ -182,7 +184,7 @@ let inv = () => {
 let look = () => {
   const room = getRoom(disk.roomId);
 
-  if (!eyesAreOpen) {
+  if (!player.eyesAreOpen) {
     println(`It's mesmerising but unfortunately your eyes are closed.`);
     return;
   }
@@ -194,8 +196,6 @@ let look = () => {
   println(room.desc)
 };
 
-let eyesAreOpen = false;
-
 // open something
 let open = (x) => {
   if (x.length === 0) {
@@ -203,14 +203,49 @@ let open = (x) => {
     return;
   }
   const room = getRoom(disk.roomId);
-  if (x === 'eyes' && eyesAreOpen) {
+  const henki = getItemInInventory('Henki')
+  if (room.id === 'beginning' && !henki) {
+    println(`You try to open your eyes.
+    But there is no one to experience it.
+    Try to ***feel*** instead.`)
+    return
+  }
+  if (x === 'eyes' && player.eyesAreOpen) {
     println(`Your eyes are already open!`);
     return
-  } else if (x === 'eyes' && !eyesAreOpen) {
-    eyesAreOpen = true;
+  } else if (x === 'eyes' && !player.eyesAreOpen) {
+    player.eyesAreOpen = true;
     selectStylesheet(`styles/${room.id}.css`);
     println(`You open your eyes.
     You can ***look*** around now.`);
+    return
+  }
+  const itemToOpen = getItemInRoom(x, room.id)
+  if (!itemToOpen) {
+    println(`There is no such thing here.`)
+    return
+  }
+  if (itemToOpen && typeof(itemToOpen.onOpen) === 'function') {
+    itemToOpen.onOpen()
+  } else {
+    println(`You can't open that.`)
+  }
+}
+
+// open something
+let close = (x) => {
+  if (x.length === 0) {
+    println(`Perhaps you wanted to ***close*** something in particular?`)
+    return;
+  }
+  if (x === 'eyes' && !player.eyesAreOpen) {
+    println(`Your eyes are already closed!`);
+    return
+  } else if (x === 'eyes' && player.eyesAreOpen) {
+    player.eyesAreOpen = false;
+    selectStylesheet(`styles/eyesClosed.css`);
+    println(`You close your eyes.
+    You can ***feel*** better.`);
     return
   }
   const itemToOpen = getItemInRoom(x, room.id)
@@ -576,7 +611,7 @@ let swingAt = (args) => {
 // string -> nothing
 let lookThusly = (str) => {
 
-  if (!eyesAreOpen) {
+  if (!player.eyesAreOpen) {
     println(`Your eyes are closed.
     Or maybe it's just too dark to see.
     It's hard to know, could be either.`);
@@ -606,7 +641,7 @@ let lookAt = (args) => {
   const character = getCharacter(name, getCharactersInRoom(disk.roomId));
   const foe = getFoeInRoom(name, disk.roomId)
 
-  if (!eyesAreOpen) {
+  if (!player.eyesAreOpen) {
     println(`Your eyes are closed.`);
     return;
   }
@@ -1030,10 +1065,8 @@ let chars = () => {
 
 // display help menu
 let help = () => {
-  const room = getRoom(disk.roomId);
   println(`Available commands:`)
   disk.helpCommands.forEach(command => println(`${bullet} ${command}`));
-  println(instructions);
 };
 
 // handle say command with no args
@@ -1082,6 +1115,7 @@ let commands = [
     load,
     restore: load,
     open,
+    close,
     feel,
     eat,
     drink,
@@ -1100,6 +1134,7 @@ let commands = [
     load: x => load(x),
     restore: x => load(x),
     open: x => open(x),
+    close: x => close(x),
     feel: feel,
     eat: eat,
     drink: drink,
@@ -1433,6 +1468,12 @@ let enterRoom = (id) => {
   roomHistory.push(id)
   player.inCombat = false;
   const room = getRoom(id);
+  
+  if (!room) {
+    println(`That exit doesn't seem to go anywhere.`);
+    return;
+  }
+  
   if (room.foes) {
     room.foes.forEach(foe => {
       if (foe.inCombat === true) {
@@ -1442,15 +1483,10 @@ let enterRoom = (id) => {
     }) 
   }
 
-  if (eyesAreOpen || room.id === 'beginning') {
+  if (player.eyesAreOpen) {
     selectStylesheet(`styles/${id}.css`);
   } else {
     selectStylesheet(`styles/eyesClosed.css`);
-  }
-
-  if (!room) {
-    println(`That exit doesn't seem to go anywhere.`);
-    return;
   }
 
   println(room.img, 'img');

@@ -3,7 +3,7 @@ const rockyPlace = {
     name: 'Rocky place',
     desc: `You crawl through the mushy darkness and emerge from what seems to be the trunk of a tree. You splash hard onto a rocky surface.
     It's a lot less mushy now.
-    You find the strength to ***open*** your eyes.`,
+    *You can save your progress with the **save** command.*`,
     onEnter: () => {
       const room = getRoom('rockyPlace');
       room.desc = `You are on a mountain range. The cloudy sky is dark purple. There are **weeds** swaying in the light breeze beside you glowing violet.

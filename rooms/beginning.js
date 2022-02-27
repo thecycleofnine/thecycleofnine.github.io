@@ -9,7 +9,7 @@ const beginning = {
     // here, we use it to change the foyer's description
     onLook: () => {
       const room = getRoom('beginning');
-      room.desc = `It's wonderful but unfortunately your eyes are closed.`;
+      room.desc = `It's wonderful here.`;
     },
     onFeel: () => {
       if (getItemInInventory('Henki')) {
@@ -17,10 +17,10 @@ const beginning = {
         You feel alive.`)  
       } else {
         if (!disk.helpCommands.includes('take')) disk.helpCommands.push('take');
-        println(`It's all mushy around you
-        but you feel empty. 
-        You feel a faint presence floating close by.
-        You feel you could maybe ***take*** it.`)
+        println(`It's all mushy around you.
+        But you feel empty. 
+        There's a faint presence floating around.
+        You feel an urge to ***take*** it.`)
       }
     },
     items: [
@@ -40,7 +40,9 @@ const beginning = {
           *Type **inv** to see your inventory.*
           *Type **help** to see available commands.*`);
         },
-        onUse: () => println(`Your spirit ***Henki*** pihises at ${player.hp} HP.`),
+        onUse: () => {
+          println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
+        },
         onSwing: () => {
           disk.inventory = disk.inventory.filter(item => item.name !== 'Henki')
           toHel(`It's all foggy and cold.

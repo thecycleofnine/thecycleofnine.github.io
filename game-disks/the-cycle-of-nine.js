@@ -1,6 +1,6 @@
 const demoDisk = {
-  roomId: 'beginning', // the ID of the room the player starts in
-  helpCommands: ['look (at)', 'open', 'use', 'feel'],
+  roomId: 'fieldOfEyesAndEars', // the ID of the room the player starts in
+  helpCommands: ['look (at)', 'open', 'feel', 'go'],
   player: {
     hp: 100,
     inCombat: false,
@@ -9,6 +9,7 @@ const demoDisk = {
     deaths: 0,
     slayedGiants: 0,
     friggsBlessing: false,
+    eyesAreOpen: false,
   },
   rooms: [
     beginning,
