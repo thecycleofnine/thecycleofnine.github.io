@@ -1,0 +1,28 @@
+{
+  "name": "the-cycle-of-nine",
+  "version": "2.0.0",
+  "description": "A browser-based text adventure game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "firefox index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thecycleofnine/thecycleofnine.github.io.git"
+  },
+  "keywords": [
+    "text-adventure",
+    "engine",
+    "adventure-game-engine",
+    "javascript",
+    "text-adventure-game",
+    "repl"
+  ],
+  "author": "e2f5db0",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/okaybenji/text-engine/issues"
+  },
+  "homepage": "https://github.com/okaybenji/text-engine#readme"
+}
