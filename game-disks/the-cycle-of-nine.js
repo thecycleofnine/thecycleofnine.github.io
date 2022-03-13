@@ -1,5 +1,8 @@
 const demoDisk = {
-  roomId: 'fieldOfEyesAndEars', // the ID of the room the player starts in
+  roomId: 'rockyPlace', // the ID of the room the player starts in
+  roomHistory: [],
+  inputs: [''],
+  inputsPos: 0,
   helpCommands: ['look (at)', 'open', 'feel', 'go'],
   player: {
     hp: 100,

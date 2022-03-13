@@ -17,7 +17,7 @@ const beardedFellow = {
       {
         option: '***What*** ?',
         removeOnRead: true,
-        onSelected() {
+        onSelected: () => {
           println(`"Will you slay many giants?!", the ***Bearded Fellow*** repeats with a boom as his clear blue eyes twinkle with excitement.`);
         }
       },
@@ -25,7 +25,7 @@ const beardedFellow = {
         option: '***Yes***, I will.',
         removeOnRead: true,
         // optional callback, run when the player selects this option
-        onSelected() {
+        onSelected: () => {
           disk.helpCommands.push('swing at'); 
           println(`"Ha! I like you!", he booms and the mountains echo.
           The **Bearded Fellow** gulps down his juniper mead in one giant swallow.

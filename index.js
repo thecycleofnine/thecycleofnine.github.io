@@ -2,9 +2,9 @@
 let disk;
 
 // store user input history
-let inputs = [''];
-let inputsPos = 0;
-let roomHistory = [];
+let inputs;
+let inputsPos;
+let roomHistory;
 
 // define list style
 let bullet = '•';
@@ -26,6 +26,9 @@ let init = (disk) => {
   });
   
   player = disk.player;
+  inputs = disk.inputs;
+  inputsPos = disk.inputsPos;
+  roomHistory = disk.roomHistory;
 
   if (!initializedDisk.inventory) { 
     initializedDisk.inventory = [];
@@ -138,19 +141,31 @@ let save = (name) => {
 // (optionally accepts a name for the save)
 let load = (name) => {
   const save = localStorage.getItem(name);
-
+  
   if (!save) {
     println(`Save file not found.`);
     return;
   }
-
+  
   disk = JSON.parse(save, (key, value) => {
     try {
-      return eval(value);
+      const evaled = eval(value);
+      if ((key === 'id' || key === 'roomId') && typeof(evaled) === 'object' && evaled.id) {
+        return evaled.id;
+      } else {
+        return evaled;
+      }
     } catch (error) {
       return value;
     }
   });
+  player = disk.player;
+  inputs = disk.inputs;
+  inputsPos = disk.inputsPos;
+  roomHistory = disk.roomHistory;
+
+  const char = getCharacter('Bearded Fellow')
+  console.log(char.topics)
 
   const line = name.length ? `Game "${name}" was loaded.` : `Game loaded.`;
   println(line);
@@ -1452,7 +1467,10 @@ let getName = name => typeof name === 'object' ? name[0] : name;
 
 // retrieve room by its ID
 // string -> room
-let getRoom = (id) => disk.rooms.find(room => room.id === id);
+let getRoom = (id) => {
+  if (typeof id === 'object' && id.id) id = id.id
+  return disk.rooms.find(room => room.id === id)
+};
 
 // remove punctuation marks from a string
 // string -> string
@@ -1465,6 +1483,7 @@ let removeExtraSpaces = str => str.replace(/\s{2,}/g," ");
 // move the player into room with passed ID
 // string -> nothing
 let enterRoom = (id) => {
+  if (typeof(id) === 'object' && id.id) id = id.id;
   roomHistory.push(id)
   player.inCombat = false;
   const room = getRoom(id);
