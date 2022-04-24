@@ -3,7 +3,7 @@ const demoDisk = {
   roomHistory: [],
   inputs: [''],
   inputsPos: 0,
-  helpCommands: ['look (at)', 'open', 'feel', 'go'],
+  helpCommands: ['look (at)', 'open', 'feel', 'go', 'quests'],
   player: {
     hp: 100,
     inCombat: false,
@@ -12,7 +12,16 @@ const demoDisk = {
     deaths: 0,
     slayedGiants: 0,
     friggsBlessing: false,
+    curseOfLoki: false,
     eyesAreOpen: false,
+    quests: [
+      {
+        id: 'exploreTheWorld',
+        name: `Explore the world`,
+        completed: false,
+        failed: false,
+      }
+    ]
   },
   rooms: [
     beginning,

@@ -75,6 +75,12 @@ const trickster = {
             "Just talk to **Hel** again and I'll take care of the rest. A simple hearing spell should do the trick."
             "I'll find you when you have obtained the plant from Hodr's Forest..."`,
             onSelected: () => {
+                player.quests.push({
+                    id: 'locateAPlant',
+                    name: `Locate a plant at the Hodr's Forest for the Trickster.`,
+                    completed: false,
+                    failed: false
+                })
                 const char = getCharacter('Trickster')
                 char.roomId = ''
                 const room = getRoom(disk.roomId)
@@ -220,10 +226,13 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster vanishes into thin air.***`)
                 const room = getRoom(disk.roomId)
-                room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
                 const item = getItemInInventory('Mistletoe')
                 item.onUse = () => {
+                    println(`You crafted a ***Mistletoe dart***.`)
+                    const quest = getQuest('locateAPlant')
+                    quest.completed = true
                     disk.inventory = disk.inventory.filter(i => i.name !== 'Mistletoe')
                     disk.inventory.push({
                         name: `Mistletoe dart`,
@@ -254,7 +263,7 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster vanishes from sight.***`)
                 const room = getRoom(disk.roomId)
-                room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
             }
         },
@@ -270,7 +279,7 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster has left.***`)
                 const room = getRoom(disk.roomId)
-                room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
                 room.desc += `\nThere's a ***Mistletoe dart*** on the ground.`
                 room.items.push({
@@ -281,9 +290,12 @@ const trickster = {
                     onThrow: () => throwAt(),
                     onUse: () => println(`You throw the ***Mistletoe dart*** aimlessly. It curves in the air and returns.`),
                     onTake: () => {
+                        const quest = getQuest('locateAPlant')
+                        quest.completed = true
                         const room = getRoom(disk.roomId)
-                        room.desc.replace(`\nThere's a ***Mistletoe dart*** on the ground.`, '')
+                        room.desc = room.desc.replace(`\nThere's a ***Mistletoe dart*** on the ground.`, '')
                         room.items = room.items.filter(i => i.name !== 'Mistletoe dart')
+                        println(`You took the ***Mistletoe dart***.`)
                         disk.inventory.push({
                             name: `Mistletoe dart`,
                             desc: `It's sharp! It can be ***throw***n ***at*** things and it always seems to come back.`,
@@ -305,6 +317,8 @@ const trickster = {
             "Honesty like that should be rewarded."
             ***The Trickster gives you a Mistletoe dart.***`,
             onSelected: () => {
+                const quest = getQuest('locateAPlant')
+                quest.completed = true
                 const char = getCharacter('Trickster')
                 char.topics = char.topics.filter(t => !t.option.includes('***Not***'))
                 disk.inventory.push({
@@ -317,5 +331,23 @@ const trickster = {
                 })
             }
         },
+        {
+            option: `***Should*** I do something with this?`,
+            removeOnRead: true,
+            prereqs: ['this'],
+            line: `"Oh, I don't know. It's a dart.
+            You can throw it at" the **Trickster** pauses for a moment
+            "...things." there is a uncomfortably long pause.
+            "Got to dash now, I'm sure we'll meet again!"
+            *The **Trickster** vanishes from sight.*`,
+            onSelected: () => {
+                const room = getRoom(disk.roomId)
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.exits.forEach(e => delete e.block)
+                const char = getCharacter('Trickster')
+                char.roomId = ''
+                endConversation()
+            }
+        }
     ]
   }

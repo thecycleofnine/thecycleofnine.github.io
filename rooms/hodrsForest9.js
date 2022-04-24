@@ -49,7 +49,7 @@ const hodrsForest9 = {
                         char.roomId = ''
                         println(`The **Trickster** smiles mysteriously and vanishes into thin air.`)
                         const room = getRoom(disk.roomId)
-                        room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                        room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
                     }
                 }
             },
@@ -77,6 +77,14 @@ const hodrsForest9 = {
                 if (mistletoe) {
                     disk.inventory = disk.inventory.filter(i => i.name !== 'Mistletoe')
                 }
+                const quest = getQuest('locateAPlant')
+                quest.failed = true
+                const char = getCharacter('Trickster')
+                char.roomId = ''
+                const pathToHodrsForest = getRoom('pathToHodrsForest')
+                pathToHodrsForest.desc = pathToHodrsForest.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                println(`The invisible ***Curse of the Trickster*** has been bestowed upon you.`)
+                player.curseOfLoki = true
                 toHel(`You have a faint memory of vomiting exorbitantly.
                 You realise you are quite dead.`)
             },
@@ -103,6 +111,14 @@ const hodrsForest9 = {
                 if (mistletoe) {
                     disk.inventory = disk.inventory.filter(i => i.name !== 'Mistletoe')
                 }
+                const char = getCharacter('Trickster')
+                char.roomId = ''
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.exits.forEach(e => delete e.block)
+                const quest = getQuest('locateAPlant')
+                quest.failed = true
+                println(`The invisible ***Curse of the Trickster*** has been bestowed upon you.`)
+                player.curseOfLoki = true
             }
         }
     ],

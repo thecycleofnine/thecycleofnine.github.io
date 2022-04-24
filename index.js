@@ -71,6 +71,36 @@ let init = (disk) => {
       },
       onEat: () => println(`What a concept!`)
     });
+    initializedDisk.inventory.push({
+      id: 'Muisti',
+      name: 'Muisti',
+      desc: `It is a feeble spirit. It holds no memories at the moment.`,
+      onUse: () => {
+        if (!localStorage.getItem('Muisti')) {
+          println(`Your ***Muisti*** spirit commits this spacetime to memory. Use ***Muisti*** again to return here at any time.`)
+          const memory = getItemInInventory('Muisti')
+          memory.desc = `It is a feeble spirit. It's holding one memory with great effort.`
+          initializedDisk.inventory = initializedDisk.inventory.filter(i => i.id !== 'Muisti')
+          initializedDisk.inventory.push(memory)
+          save('Muisti')
+        } else {
+          println(`Your ***Muisti*** spirit recalls a memory with great effort. ***Muisti*** is too weak a spirit to hold on to any additional memories.`)
+          load('Muisti')
+        }
+      },
+      onSwing: () => println(`Nothing happened. You can't get rid of your problems that easily.`),
+      onEat: () => println(`What a concept!`)
+    });
+    initializedDisk.inventory.push({
+      id: 'Ajatus',
+      name: 'Ajatus',
+      desc: `It is your thought spirit. It feeds you with things to think about.`,
+      onUse: () => {
+        think()
+      },
+      onSwing: () => println(`Nothing happened. You can't get rid of your thoughts that easily.`),
+      onEat: () => println(`***Ajatus*** is very pleased to feed.`)
+    });
   }
 
   if (!initializedDisk.characters) {
@@ -133,8 +163,6 @@ const selectStylesheet = filename => {
 let save = (name) => {
   const save = JSON.stringify(disk, (key, value) => typeof value === 'function' ? value.toString() : value);
   localStorage.setItem(name, save);
-  const line = name.length ? `Game saved as "${name}".` : `Game saved.`;
-  println(line);
 };
 
 // restore the disk from storage
@@ -164,11 +192,6 @@ let load = (name) => {
   inputsPos = disk.inputsPos;
   roomHistory = disk.roomHistory;
 
-  const char = getCharacter('Bearded Fellow')
-  console.log(char.topics)
-
-  const line = name.length ? `Game "${name}" was loaded.` : `Game loaded.`;
-  println(line);
   enterRoom(disk.roomId);
 };
 
@@ -422,6 +445,19 @@ let eat = (name) => {
   }
 }
 
+let quests = () => {
+  println(`Quests:`)
+  player.quests.forEach(q => {
+    if (q.completed) {
+      println(`${q.name} (Completed)`)
+    } else if (q.failed) {
+      println(`${q.name} (Failed)`)
+    } else {
+      println(q.name)
+    }
+  })
+}
+
 let thingsToHear = [
   `fur growing on a goat`,
   `blades of grass growing from the soil`,
@@ -478,6 +514,66 @@ useMimirsEar = () => {
     const index = Math.floor(Math.random() * thingsToHear.length)
     println(`The ***Mimir's Ear*** hears ${thingsToHear[index]}.`)
     thingsToHear = thingsToHear.filter(thing => thing !== thingsToHear[index])
+  }
+}
+
+let randomThoughts = [
+  `I wonder what my face looks like`,
+  `My spirits are what I am`,
+  `Why would I even continue?`,
+  `I must find purpose in this world`,
+  `I have a really bad memory`,
+  `Is it called death if I lose my ***Henki*** spirit?`,
+  `What happens if I lose my ***Ajatus*** spirit?`,
+  `What happens if I lose my ***Muisti*** spirit?`,
+  `What happens if I lose all my spirits?`,
+  `I wonder if there are more spirits to find`,
+  `How many spirits does it take to be whole?`,
+  `I should probably take some time to ***feel*** every now and then`,
+  `Swinging at things with axes is such joy`,
+  `I should probably find food at some point`,
+  `I wonder how my ***Henki*** is doing`,
+  `Why must I have such a weak ***Muisti*** spirit`,
+  `If I'm not careful with my ***Muisti*** spirit I might lose a lot of progress`,
+  `I wonder if there's afterlife? Could this be an afterlife already?`,
+  `I wonder who all these characters are in this world`,
+  `My ***Muisti*** spirit is so bad I have no clue where I am`,
+  `I wonder how big this world is`,
+  `Being lost is not so bad. Having no purpose – that's bad.`,
+  `I wonder if I'd live forever just by stopping here`,
+  `It's so relaxing to ***close*** my eyes for a moment`,
+  `I wonder what things I could eat here`,
+  `There must be some way to erase my memory`,
+  `What were my ***quests*** again?`
+]
+
+let combatThoughts = [
+  `My ***Henki*** spirit pihises, which means I must still be alive`,
+  `I could probably smash the weapon`,
+  `Trust your instincts`,
+  `There are worse outcomes than death`,
+  `Death can't be so bad after all`,
+  `I wonder what happens if I die like this`,
+  `Is this a formidable foe?`,
+  `Would it be shameful to escape?`,
+  `What a cruel world this is`,
+  `I wonder if there are other methods to defeat this foe`,
+  `Oh shit`,
+  `I wonder if there's more I could do in this situation`,
+  `Would it be shameful to die here?`,
+  `What would I gain by defeating this foe?`,
+  `Any mistake could lead to an early death`,
+]
+
+think = () => {
+  if (player.inCombat) {
+    const index = Math.floor(Math.random() * combatThoughts.length)
+    println(`Your ***Ajatus*** spirit feeds you a thought:
+    "${combatThoughts[index]}".`)
+  } else {
+    const index = Math.floor(Math.random() * randomThoughts.length)
+    println(`Your ***Ajatus*** spirit feeds you a thought:
+    "${randomThoughts[index]}".`)
   }
 }
 
@@ -1126,8 +1222,8 @@ let commands = [
     chars,
     help,
     say,
-    save,
-    load,
+    //save,
+    //load,
     restore: load,
     open,
     close,
@@ -1135,6 +1231,7 @@ let commands = [
     eat,
     drink,
     mistletoe,
+    quests,
     swing: swingAt,
   },
   // one argument (e.g. "go north", "take book")
@@ -1145,9 +1242,9 @@ let commands = [
     get: takeItem,
     use: useItem,
     say: sayString,
-    save: x => save(x),
-    load: x => load(x),
-    restore: x => load(x),
+    //save: x => save(x),
+    //load: x => load(x),
+    //restore: x => load(x),
     open: x => open(x),
     close: x => close(x),
     feel: feel,
@@ -1471,6 +1568,10 @@ let getRoom = (id) => {
   if (typeof id === 'object' && id.id) id = id.id
   return disk.rooms.find(room => room.id === id)
 };
+
+let getQuest = (id) => {
+  return player.quests.find(quest => quest.id === id)
+}
 
 // remove punctuation marks from a string
 // string -> string
