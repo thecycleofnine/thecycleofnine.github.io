@@ -103,8 +103,18 @@ const beardedFellow = {
             endConversation()
           } else {
             println(`"Ha!", the **Bearded Fellow** lets out in exitement.
-            "Here you go my friend!", he gives you the **Fine Axe**.
+            "Here you go my friend!", he gives you a **Fine Axe**.
             "Slay many giants with this axe!"`)
+            disk.inventory.push({
+              name: 'Fine Axe',
+              desc: `The axe is made of the frozen tears of a giant.
+              Tou use it you can ***swing at*** things.`,
+              onUse: () => {
+                println(`You swing the ***Fine Axe*** aimlessly.
+                The nearby spirits are terrified.`)
+              },
+              onSwing: () => println('What a concept!')
+            });
             endConversation()
           }
         }

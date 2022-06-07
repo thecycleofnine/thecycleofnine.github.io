@@ -14,6 +14,7 @@ const fisherVillageGate = {
     ],
     exits: [
         { dir: 'north', id: 'hillside' },
-        { dir: 'east', id: 'pathToHodrsForest' }
+        { dir: 'east', id: 'pathToHodrsForest' },
+        { dir: 'south', id: 'fisherVillageSquare' },
     ]
 }

@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'rockyPlace', // the ID of the room the player starts in
+  roomId: 'fisherVillageAltar', // the ID of the room the player starts in
   roomHistory: [],
   inputs: [''],
   inputsPos: 0,
@@ -47,6 +47,8 @@ const demoDisk = {
     frostVillageMine,
     hillside,
     fisherVillageGate,
+    fisherVillageSquare,
+    fisherVillageAltar,
     pathToHodrsForest,
     hodrsForest1,
     hodrsForest2,
@@ -57,6 +59,11 @@ const demoDisk = {
     hodrsForest7,
     hodrsForest8,
     hodrsForest9,
+    spiritWorld1,
+    spiritWorld2,
+    spiritWorld3,
+    spiritWorld4,
+    spiritWorld5,
   ],
   characters: [
     beardedFellow,
@@ -65,6 +72,8 @@ const demoDisk = {
     housecarl,
     chieftain,
     hela,
-    trickster
+    trickster,
+    mushlings,
+    theThree,
   ],
 };

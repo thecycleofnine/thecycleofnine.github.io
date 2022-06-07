@@ -98,7 +98,8 @@ const mountainTrail = {
               room.desc = `Icy winds create small snow whirlwinds in the air. There's a **Frost Giant** laying dead on the snow.`
               room.items[room.items.length-1].desc = `The **Frost Giant** is laying dead on the snow. A formidable foe.`
             }
-          })
+          }),
+          room.exits.forEach(e => delete e.block)
         },
       }
     ],

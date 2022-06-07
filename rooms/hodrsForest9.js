@@ -18,8 +18,8 @@ const hodrsForest9 = {
                 "For a moment there I thought you were never going to make it out."`)
                 const pathtoHodrsForest = getRoom('pathToHodrsForest')
                 const room = getRoom(disk.roomId)
-                pathtoHodrsForest.exits.map(e => e.block = `The **Trickster** teleports you back to him.
-                You have something he wants.`)
+                pathtoHodrsForest.exits.map(e => e.block = `An invisible force pulls you back as you try to leave.
+                You have something The **Trickster*** wants.`)
                 pathtoHodrsForest.desc += `\nThe **Trickster** is leaning at a tree, watching you.`
                 room.items = room.items.filter(i => i.name !== 'mistletoe')
                 println(`You took the ***mistletoe***.`)

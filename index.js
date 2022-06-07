@@ -34,16 +34,16 @@ let init = (disk) => {
     initializedDisk.inventory = [];
 
     // REMOVE THIS
-    //initializedDisk.inventory.push({
-    //  name: 'Fine Axe',
-    //  desc: `The axe is made of the frozen tears of a giant.
-    //  Tou use it you can ***swing at*** things.`,
-    //  onUse: () => {
-    //    println(`You swing the ***Fine Axe*** aimlessly.
-    //    The nearby spirits are terrified.`)
-    //  },
-    //  onSwing: () => println('What a concept!')
-    //});
+    initializedDisk.inventory.push({
+      name: 'Fine Axe',
+      desc: `The axe is made of the frozen tears of a giant.
+      Tou use it you can ***swing at*** things.`,
+      onUse: () => {
+        println(`You swing the ***Fine Axe*** aimlessly.
+        The nearby spirits are terrified.`)
+      },
+      onSwing: () => println('What a concept!')
+    });
     initializedDisk.inventory.push({
       id: 'Henki',
       name: 'Henki',
@@ -423,6 +423,10 @@ let eat = (name) => {
         println(`**${character.name[0]}** is very confused by your attempt and pushes you away appalled.`)
         return
       }
+      if (['The Three'].includes(character.name[0])) {
+        println(`Such an act will not be woven.`)
+        return
+      }
       println(`The **${character.name[0]}** is very confused by your attempt and pushes you away appalled.`)
       return;
     }
@@ -702,6 +706,10 @@ let swingAt = (args) => {
 
       // swing at item
       if (typeof(itemInRoom.onSwing) === 'function') {
+        if (itemInRoom.name === 'web') {
+          println(`Such an act will not be woven.`)
+          return
+        }
         println(`You take a swing at the ***${itemInRoom.name}*** with ***Fine Axe***.`)
         itemInRoom.onSwing({println, getCharacter})
       } else {
