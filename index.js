@@ -632,6 +632,7 @@ toValhalla = (foe) => {
 toHel = (desc) => {
   const room = getRoom('hel')
   disk.inventory = disk.inventory.filter(i => i.name !== 'Henki')
+  disk.inventory = disk.inventory.filter(i => i.name !== 'Keho')
   room.printDescriptions = false
   enterRoom('hel')
   player.henki = false;
