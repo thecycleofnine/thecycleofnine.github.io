@@ -22,14 +22,14 @@ const hel = {
         }
         room.printDescriptions = true
     },
-    onLook: () => println(`You are in a large hall. It's dark but you're able to see the outlines of a very long ***table***.
+    onLook: () => println(`You are in a large hall. It's dimly lit but you're able to see the outlines of a very long ***table***.
     There's a ***throne*** at the other end of the table and someone's sitting in it.`),
     items: [
         {
             name: 'table',
-            desc: `It's a very long table. Thousands of pale dead people are feasting at it.
-            There's tons of ***salmon*** and ***ale***.
-            The dead seem quiet and uninterested by your arrival.`,
+            desc: `It's a very long table. Billions of people are feasting at it.
+            There's tons of plant-based ***food*** and ***ale***.
+            The dead feasters seem peaceful and undisturbed by your arrival.`,
             onSwing: () => {
                 println(`It makes a sizeable dent to the table.
                 No one seems to pay any mind to you however.`)
@@ -46,16 +46,16 @@ const hel = {
             onEat: () => println(`**Hel** looks at you appalled as you try to gnaw the fingernails.`)
         },
         {
-            name: 'salmon',
+            name: 'food',
             desc: `It was grilled a long time ago.`,
-            onEat: () => println(`The salmon tastes okay but there is no sense of nourishment.`),
-            onSwing: () => println(`The salmon cuts in half. It's easier to eat this way.`)
+            onEat: () => println(`The food tastes delightful but there is no sense of nourishment.`),
+            onSwing: () => println(`Your plate cuts in half. It's easier to eat this way.`)
         },
         {
             name: 'ale',
-            desc: `It looks full-bodied but stale.`,
-            onDrink: () => println(`It tastes okay but there is no sense of delight.`),
-            onSwing: () => println(`An ale mug breaks loudly. There's ale everywhere.`)
+            desc: `It looks sweet.`,
+            onDrink: () => println(`It has a full-bodied and fruity taste.`),
+            onSwing: () => println(`An ale mug breaks loudly. Ale splashes everywhere.`)
         }
     ]
 }

@@ -92,6 +92,17 @@ let init = (disk) => {
       onEat: () => println(`What a concept!`)
     });
     initializedDisk.inventory.push({
+      id: 'Keho',
+      name: 'Keho',
+      desc: `It is your body. It's fleshy and warm.`,
+      onUse: () => {
+        println(`Blood is pumping through your ***Keho***.`)
+      },
+      onSwing: () => toHel(`You have a faint memory of doing something incredibly stupid.`),
+      onEat: () => println(`You bite into your ***Keho***.
+      It hurts!`)
+    });
+    initializedDisk.inventory.push({
       id: 'Ajatus',
       name: 'Ajatus',
       desc: `It is your thought spirit. It feeds you with things to think about.`,
@@ -335,6 +346,17 @@ let useHelsBlessing = () => {
       },
       onEat: () => println(`What a concept!`)
     })
+    disk.inventory.push({
+      name: 'Keho',
+      desc: `It's your body. It's fleshy and warm.`,
+      onUse: () => println(`Blood is pumping through your ***Keho***.`),
+      onSwing: () => {
+        toHel(`You have a faint memory of doing something incredibly stupid.
+        You realise you are quite dead.`)
+      },
+      onEat: () => println(`You bite into your ***Keho***.
+      It hurts!`)
+    })
     let room = Math.floor(Math.random() * 4)
     if (room === 0) {
       enterRoom('pathToHodrsForest')
@@ -516,9 +538,9 @@ let thingsToHear = [
   `hair growing inside itself`,
 ]
 
-useMimirsEar = () => {
+useHeimdallrsEar = () => {
   if (thingsToHear.length === 0) {
-    println(`The ***Mimir's Ear*** hears Everything.`)
+    println(`The ***Heimdallr's Ear*** hears Everything.`)
     println(`A spirit **Itse** has been observing you for a while.
     It decides to join you.`)
     disk.inventory.push({
@@ -532,7 +554,7 @@ useMimirsEar = () => {
     })
   } else {
     const index = Math.floor(Math.random() * thingsToHear.length)
-    println(`The ***Mimir's Ear*** hears ${thingsToHear[index]}.`)
+    println(`The ***Heimdallr's Ear*** hears ${thingsToHear[index]}.`)
     thingsToHear = thingsToHear.filter(thing => thing !== thingsToHear[index])
   }
 }
@@ -599,6 +621,7 @@ think = () => {
 
 toValhalla = (foe) => {
   disk.inventory = disk.inventory.filter(i => i.name !== 'Henki')
+  disk.inventory = disk.inventory.filter(i => i.name !== 'Keho')
   enterRoom('valhalla')
   player.henki = false;
   println(`A faint memory of a **${foe.name[0]}** lingers in your mind. 

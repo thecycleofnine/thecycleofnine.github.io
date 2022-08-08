@@ -44,10 +44,7 @@ const beginning = {
           println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
         },
         onSwing: () => {
-          disk.inventory = disk.inventory.filter(item => item.name !== 'Henki')
-          toHel(`It's all foggy and cold.
-          You feel empty inside.
-          Tou realise you have been dead for a while now.`)
+          println(`Nothing happens.`)
         },
         onEat: () => println(`What a concept!`)
       }

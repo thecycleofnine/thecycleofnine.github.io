@@ -4,9 +4,9 @@ const hela = {
     allThingsWeep: false,
     // printed when the player looks at the character
     desc: `She's **Hel**. The goddess of the underworld. Half of her face is scorched black and the other half is pale white.
-    Her expression is rather stern and dignified.`,
+    Her expression is stern and dignified.`,
     onSwing: () => {
-        println(`The axe sinks deep into her flesh.
+        println(`The axe sinks deep into her flesh and then heals instantly.
         She glances at you impatiently and simply asks "Are you finished?".
         **Hel** can't be damaged here.`)
     },
@@ -48,7 +48,7 @@ const hela = {
             option: `***Wept*** for me?`,
             prereqs: ['how'],
             removeOnRead: true,
-            line: `"Oh, yes. If all things wept at your passing – if all of the the people, animals, rocks and mountains, plants, iron, clouds and all things wept for you – only then would I release you from my hall, back amongst the living."`,
+            line: `"Oh, yes. If all things wept at your passing – if all of the the people, animals, rocks and mountains, plants, iron, clouds and all things wept for you – only then would I let you wander outside my hall, back amongst the living."`,
             onSelected: () => {
                 const room = getRoom(disk.roomId)
                 const trickster = getCharacter('Trickster')
@@ -64,7 +64,7 @@ const hela = {
             removeOnRead: true,
             line: `"Oh, pish posh." **Hel** waves her hand belittlingly.
             "Feast at my table, newling", she says encouragingly.
-            "Not much else to do here, is there?"`
+            "I hear the food is quite delightful."`
         },
         {
             option: `***All*** things weep at my death.`,
@@ -86,7 +86,7 @@ const hela = {
         {
             option: `***Nope***. I'll be going now.`,
             removeOnRead: true,
-            line: `"I just want to say this is highly irregular" **Hel** says annoyed.
+            line: `"I just want to say this is highly irregular" **Hel** says slightly annoyed.
             "Well, off you go then."`,
             onSelected: () => {
                 endConversation()

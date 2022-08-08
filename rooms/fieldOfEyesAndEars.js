@@ -35,27 +35,27 @@ const fieldOfEyesAndEars = {
         onSwing: () => {
           println(`It's an earsplitting frenzy.`)
           if (!this.earsSplitted) {
-            println(`A ***Mimir's Ear*** on the ground senses mortal danger. It ripens instantly.`)
+            println(`A ***Heimdallr's Ear*** on the ground senses mortal danger. It ripens instantly.`)
             this.earsSplitted = true
             getRoom('fieldOfEyesAndEars').items.push({
-              name: `Mimir's Ear`,
+              name: `Heimdallr's Ear`,
               desc: `It hears everything.`,
               isTakeable: true,
               onTake: () => {
-                println(`You took the ***Mimir's Ear***.`)
+                println(`You took the ***Heimdallr's Ear***.`)
                 const room = getRoom('fieldOfEyesAndEars')
-                room.items = room.items.filter(item => item.name !== `Mimir's Ear`)
+                room.items = room.items.filter(item => item.name !== `Heimdallr's Ear`)
               },
               onUse: () => {
-                useMimirsEar()
+                useHeimdallrsEar()
               },
               onSwing: () => {
                 println(`It's an earsplitting frenzy.`)
-                demoDisk.inventory = disk.inventory.filter(item => item.name !== `Mimir's Ear`);
+                demoDisk.inventory = disk.inventory.filter(item => item.name !== `Heimdallr's Ear`);
               },
               onEat: () => {
-                println(`You munch on the ***Mimir's Ear***. It's hairy on the inside.`);
-                demoDisk.inventory = disk.inventory.filter(item => item.name !== `Mimir's Ear`);
+                println(`You munch on the ***Heimdallr's Ear***. It's hairy on the inside.`);
+                demoDisk.inventory = disk.inventory.filter(item => item.name !== `Heimdallr's Ear`);
               }
             })
           }

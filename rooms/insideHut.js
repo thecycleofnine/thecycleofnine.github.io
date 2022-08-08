@@ -109,7 +109,7 @@ const insideHut = {
           const room = getRoom('insideHut')
           room.items[0].desc = `It's an enormous kettle. It's still full of ***porridge***! The kettle is hanging from the ceiling with a ***rope***.`
           println(`The porridge is undescribably good.
-          Your Henki is restored!`)
+          Your Henki is restored to full HP! (Henki Points)`)
           player.hp = 100;
         },
         onSwing: () => println(`You come to your senses before the axe connects.`)
