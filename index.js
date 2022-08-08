@@ -15,6 +15,9 @@ let input = document.querySelector('#input');
 // define player
 let player;
 
+// define mute (music)
+let mute;
+
 // add any default values to the disk
 // disk -> disk
 let init = (disk) => {
@@ -29,6 +32,7 @@ let init = (disk) => {
   inputs = disk.inputs;
   inputsPos = disk.inputsPos;
   roomHistory = disk.roomHistory;
+  mute = true;
 
   if (!initializedDisk.inventory) { 
     initializedDisk.inventory = [];
@@ -172,16 +176,20 @@ let audio = new Audio();
 let playAudio = (filename) => {
   audio.pause();
   audio = new Audio(`music/${filename}`);
-  audio.play();
+  if (!mute) {
+    audio.play();
+  }
 }
 
 let muteAudio = () => {
-  if (audio.paused) {
+  if (mute) {
     audio.play()
     document.getElementById("mute").src="resources/audio-not-muted.png";
+    mute = false
   } else {
     audio.pause()
     document.getElementById("mute").src="resources/audio-muted.png";
+    mute = true
   }
 }
 
