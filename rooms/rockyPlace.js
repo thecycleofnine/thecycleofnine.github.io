@@ -3,8 +3,9 @@ const rockyPlace = {
     name: 'Rocky place',
     desc: `You crawl through the mushy darkness and emerge from what seems to be the trunk of a tree. You splash hard onto a rocky surface.
     It's a lot less mushy now.
-    *You can **use** your **Muisti** sprit to save your progress. The feeble spirit can hold only one memory, so use it wisely.*`,
+    *You can **use** your **Muisti** spirit to save your progress. This feeble spirit can hold only one memory, so use it wisely.*`,
     onEnter: () => {
+      playAudio('dypt-inne-i-skogen.mp3');
       const room = getRoom('rockyPlace');
       room.desc = `You are on a mountain range. The cloudy sky is dark purple. There are **weeds** swaying in the light breeze beside you glowing violet.
       You can try to ***look at*** them.

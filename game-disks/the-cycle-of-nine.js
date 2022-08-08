@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'fisherVillageAltar', // the ID of the room the player starts in
+  roomId: 'beginning', // the ID of the room the player starts in
   roomHistory: [],
   inputs: [''],
   inputsPos: 0,

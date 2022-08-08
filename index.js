@@ -34,43 +34,43 @@ let init = (disk) => {
     initializedDisk.inventory = [];
 
     // REMOVE THIS
-    initializedDisk.inventory.push({
-      name: 'Fine Axe',
-      desc: `The axe is made of the frozen tears of a giant.
-      Tou use it you can ***swing at*** things.`,
-      onUse: () => {
-        println(`You swing the ***Fine Axe*** aimlessly.
-        The nearby spirits are terrified.`)
-      },
-      onSwing: () => println('What a concept!')
-    });
-    initializedDisk.inventory.push({
-      id: 'Henki',
-      name: 'Henki',
-      desc: `It is a formless spirit. A life force. It pihises.`,
-      isTakeable: true,
-      onTake: () => {
-        const room = getRoom('beginning');
-        delete room.exits[0].block;
-        if (!disk.helpCommands.includes('inv')) disk.helpCommands.push('inv');
-        println(`It is a spirit called **Henki**.
-        It circles around you, measuring you.
-        Slowly, you become intertwined with it
-        till death do you part.
-        *Type **inv** to see your inventory.*
-        *Type **help** to see available commands.*`);
-      },
-      onUse: () => {
-        println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
-      },
-      onSwing: () => {
-        initializedDisk.inventory = initializedDisk.inventory.filter(item => item.name !== 'Henki')
-        toHel(`It's all foggy and cold.
-        You feel empty inside.
-        You realise you have been dead for a while now.`)
-      },
-      onEat: () => println(`What a concept!`)
-    });
+    //initializedDisk.inventory.push({
+    //  name: 'Fine Axe',
+    //  desc: `The axe is made of the frozen tears of a giant.
+    //  Tou use it you can ***swing at*** things.`,
+    //  onUse: () => {
+    //    println(`You swing the ***Fine Axe*** aimlessly.
+    //    The nearby spirits are terrified.`)
+    //  },
+    //  onSwing: () => println('What a concept!')
+    //});
+    //initializedDisk.inventory.push({
+    //  id: 'Henki',
+    //  name: 'Henki',
+    //  desc: `It is a formless spirit. A life force. It pihises.`,
+    //  isTakeable: true,
+    //  onTake: () => {
+    //    const room = getRoom('beginning');
+    //    delete room.exits[0].block;
+    //    if (!disk.helpCommands.includes('inv')) disk.helpCommands.push('inv');
+    //    println(`It is a spirit called **Henki**.
+    //    It circles around you, measuring you.
+    //    Slowly, you become intertwined with it
+    //    till death do you part.
+    //    *Type **inv** to see your inventory.*
+    //    *Type **help** to see available commands.*`);
+    //  },
+    //  onUse: () => {
+    //    println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
+    //  },
+    //  onSwing: () => {
+    //    initializedDisk.inventory = initializedDisk.inventory.filter(item => item.name !== 'Henki')
+    //    toHel(`It's all foggy and cold.
+    //    You feel empty inside.
+    //    You realise you have been dead for a while now.`)
+    //  },
+    //  onEat: () => println(`What a concept!`)
+    //});
     initializedDisk.inventory.push({
       id: 'Muisti',
       name: 'Muisti',
@@ -157,6 +157,22 @@ const selectStylesheet = filename => {
   }, 100)
 }
 
+let audio = new Audio();
+let playAudio = (filename) => {
+  audio.pause();
+  audio = new Audio(`music/${filename}`);
+  audio.play();
+}
+
+let muteAudio = () => {
+  if (audio.paused) {
+    audio.play()
+    document.getElementById("mute").src="resources/audio-not-muted.png";
+  } else {
+    audio.pause()
+    document.getElementById("mute").src="resources/audio-muted.png";
+  }
+}
 
 // convert the disk to JSON and store it
 // (optionally accepts a name for the save)
@@ -244,7 +260,7 @@ let open = (x) => {
   const henki = getItemInInventory('Henki')
   if (room.id === 'beginning' && !henki) {
     println(`You try to open your eyes.
-    But there is no one to experience it.
+    But there is no one to experience the visual input yet.
     Try to ***feel*** instead.`)
     return
   }
@@ -748,7 +764,7 @@ let lookThusly = (str) => {
   } else if (str.length === 1) {
     println(`What a concept!`)
   } else {
-    println(`Perhaps you were trying to ***look at*** the ${str}?`);
+    println(`Perhaps you were trying to ***look at*** something?`);
   }
 }
 
@@ -1241,6 +1257,7 @@ let commands = [
     mistletoe,
     quests,
     swing: swingAt,
+    think,
   },
   // one argument (e.g. "go north", "take book")
   {
@@ -1600,6 +1617,10 @@ let enterRoom = (id) => {
   if (!room) {
     println(`That exit doesn't seem to go anywhere.`);
     return;
+  }
+
+  if (room.music) {
+    playAudio(room.music);
   }
   
   if (room.foes) {

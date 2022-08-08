@@ -58,4 +58,5 @@ const beginning = {
       {dir: 'north', id: 'rockyPlace', block: `You are still but an empty shell.
       It's dangerous to go alone.`},
     ],
+    music: 'gudernes-vilje.mp3',
   }
