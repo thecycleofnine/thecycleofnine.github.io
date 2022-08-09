@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'beginning', // the ID of the room the player starts in
+  roomId: 'fisherVillageSquare', // the ID of the room the player starts in
   roomHistory: [],
   inputs: [''],
   inputsPos: 0,
@@ -64,6 +64,14 @@ const demoDisk = {
     spiritWorld3,
     spiritWorld4,
     spiritWorld5,
+    godPole1,
+    godPole2,
+    godPole3,
+    godPole4,
+    godPole5,
+    godPole6,
+    godPole7,
+    godPole8,
   ],
   characters: [
     beardedFellow,

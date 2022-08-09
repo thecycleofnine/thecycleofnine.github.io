@@ -1,15 +1,15 @@
 const fisherVillageGate = {
     id: 'fisherVillageGate',
     name: `Fisher village gate`,
-    desc: `You are standing in front of the gate leading to an old fisher village. There's a ***sign*** on the gate.
+    desc: `You are standing in front of the gate of an old fisher village. The gate is open and there's a ***sign*** above the gate.
     A dirt road narrows to the ***east*** leading to a forest.`,
     printDescriptions: true,
     items: [
         {
             name: 'sign',
-            desc: `It's a wooden sign nailed to the open village gate.
-            It reads "Welcome! - Jötnar beware".`,
-            onSwing: () => println(`The rotten carriage breaks down even further.`),
+            desc: `It reads "Welcome! (Jøtnar beware)"`,
+            onSwing: () => println(`An angry old fisher yells at you from the village square: "By the Nine, stop that at once!"`),
+            onEat: () => println(`It's too high up!'`)
         }
     ],
     exits: [
