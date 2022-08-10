@@ -9,26 +9,33 @@ const chieftainsHouse = {
         const housecarl = getCharacter('housecarl')
         housecarl.roomId = 'chieftainsHouse'
     },
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     foes: [
         {
-          name: ['Housecarl', 'The Housecarl'],
-          hp: 200,
-          alive: true,
-          inCombat: false,
-          isArmed: true,
-          onEngage: () => {
-              const room = getRoom('chieftainsHouseEntrance')
-              toValhalla(room.foes[0])
-          },
-          hitDescriptions: [
-            ``,
-          ],
-          missDescriptions: [
-            ``,
-          ],
-          attackDescriptions: [
-            ``,
-          ],
+            name: ['Housecarl', 'The Housecarl'],
+            hp: 200,
+            alive: true,
+            inCombat: false,
+            isArmed: true,
+            onEngage: () => {
+                const room = getRoom('chieftainsHouseEntrance')
+                toValhall(room.foes[0])
+            },
+            hitDescriptions: [
+                ``,
+            ],
+            missDescriptions: [
+                ``,
+            ],
+            attackDescriptions: [
+                ``,
+            ],
         }
     ],
     exits: [

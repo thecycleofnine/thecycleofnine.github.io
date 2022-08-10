@@ -4,6 +4,13 @@ const hodrsForest9 = {
     desc: `You have found your way to the center of Hodr's Forest.
     A single beam of light illuminates ***mistletoe*** on the mossy ground.`,
     printDescriptions: true,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'Mistletoe',

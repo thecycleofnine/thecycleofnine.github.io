@@ -5,8 +5,12 @@ const hodrsForest7 = {
     There are ***wind chimes*** made of bones attached to tree branches all over.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`The spirits of the forest speak of the Blind One.
-        He will be deceived by the Trickster.`)
+        if (player.eyesAreOpen) {
+            println(`The spirits of the forest speak of the Blind One.
+            He will be deceived by the Trickster.`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

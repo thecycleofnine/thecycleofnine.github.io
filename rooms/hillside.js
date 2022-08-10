@@ -5,6 +5,13 @@ const hillside = {
     The path down ***south*** seems to lead to an old fisher village.
     There's a mountain range to the ***north***.`,
     printDescriptions: true,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'carriage',

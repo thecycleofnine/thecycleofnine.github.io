@@ -6,7 +6,11 @@ const hodrsForest2 = {
     There's some pearly white ***berries*** on the mossy forest floor.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`You feel a lost spirit wailing nearby. Their fate has been a cruel one.`)
+        if (player.eyesAreOpen) {
+            println(`You feel a lost spirit wailing nearby. Their fate has been a cruel one.`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

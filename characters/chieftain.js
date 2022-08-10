@@ -6,7 +6,7 @@ const chieftain = {
     onSwing: () => {
         const room = getRoom('chieftainsHouse')
         println(`You hear a swish as your head drops from your shoulders.`)
-        toValhalla(room.foes[0])
+        toValhall(room.foes[0])
     },
     // optional callback, run when the player talks to this character
     onTalk: () => {

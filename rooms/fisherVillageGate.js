@@ -4,6 +4,13 @@ const fisherVillageGate = {
     desc: `You are standing in front of the gate of an old fisher village. The gate is open and there's a ***sign*** above the gate.
     A dirt road narrows to the ***east*** leading to a forest.`,
     printDescriptions: true,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'sign',

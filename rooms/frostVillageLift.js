@@ -12,6 +12,13 @@ const frostVillageLift = {
             room.exits[0].block = `You need to get down first!`
         }
     },
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'lever',

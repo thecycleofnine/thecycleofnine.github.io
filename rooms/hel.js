@@ -24,6 +24,13 @@ const hel = {
     },
     onLook: () => println(`You are in a large hall. It's dimly lit but you're able to see the outlines of a very long ***table***.
     There's a ***throne*** at the other end of the table and someone's sitting in it.`),
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'table',

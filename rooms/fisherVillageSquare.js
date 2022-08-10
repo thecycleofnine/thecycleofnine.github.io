@@ -1,14 +1,15 @@
 const fisherVillageSquare = {
     id: 'fisherVillageSquare',
     name: `Fisher village square`,
-    desc: `Large wooden ***poles*** form a circle at the center of the village square.`,
+    desc: `Tall wooden ***poles*** form a circle at the center of the village square.
+    The closest pole is to the ***south***.`,
     printDescriptions: true,
     items: [
         {
             name: 'poles',
             desc: `Each pole is skillfully carved into a detailed figure.`,
-            onSwing: () => {},
-            onEat: () => {},
+            onSwing: () => println(`But they are too far away!`),
+            onEat: () => println(`The poles are too far away!`),
         }
     ],
     exits: [

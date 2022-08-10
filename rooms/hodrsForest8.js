@@ -6,7 +6,11 @@ const hodrsForest8 = {
     There's some pearly white ***berries*** on the mossy forest floor.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`You feel you are getting very close. How long has it been?`)
+        if (player.eyesAreOpen) {
+            println(`You feel you are getting very close. How long has it been?`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

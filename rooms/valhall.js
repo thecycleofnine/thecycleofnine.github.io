@@ -1,7 +1,9 @@
-const frostVillageMine = {
-    id: 'frostVillageMine',
-    name: `Dark Mine`,
-    desc: `TBA`,
+const valhall = {
+    id: 'valhall',
+    name: 'Valhall',
+    onLook: () => {
+        println(`TBA`)
+    },
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`TBAopen`)

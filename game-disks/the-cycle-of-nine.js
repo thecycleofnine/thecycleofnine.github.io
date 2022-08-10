@@ -32,7 +32,7 @@ const demoDisk = {
     insideHut,
     mountainTrail,
     mountainRidge,
-    valhalla,
+    valhall,
     hel,
     mountainPeak,
     frostLands,

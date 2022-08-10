@@ -38,43 +38,43 @@ let init = (disk) => {
     initializedDisk.inventory = [];
 
     // REMOVE THIS
-    //initializedDisk.inventory.push({
-    //  name: 'Fine Axe',
-    //  desc: `The axe is made of the frozen tears of a giant.
-    //  Tou use it you can ***swing at*** things.`,
-    //  onUse: () => {
-    //    println(`You swing the ***Fine Axe*** aimlessly.
-    //    The nearby spirits are terrified.`)
-    //  },
-    //  onSwing: () => println('What a concept!')
-    //});
-    //initializedDisk.inventory.push({
-    //  id: 'Henki',
-    //  name: 'Henki',
-    //  desc: `It is a formless spirit. A life force. It pihises.`,
-    //  isTakeable: true,
-    //  onTake: () => {
-    //    const room = getRoom('beginning');
-    //    delete room.exits[0].block;
-    //    if (!disk.helpCommands.includes('inv')) disk.helpCommands.push('inv');
-    //    println(`It is a spirit called **Henki**.
-    //    It circles around you, measuring you.
-    //    Slowly, you become intertwined with it
-    //    till death do you part.
-    //    *Type **inv** to see your inventory.*
-    //    *Type **help** to see available commands.*`);
-    //  },
-    //  onUse: () => {
-    //    println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
-    //  },
-    //  onSwing: () => {
-    //    initializedDisk.inventory = initializedDisk.inventory.filter(item => item.name !== 'Henki')
-    //    toHel(`It's all foggy and cold.
-    //    You feel empty inside.
-    //    You realise you have been dead for a while now.`)
-    //  },
-    //  onEat: () => println(`What a concept!`)
-    //});
+    initializedDisk.inventory.push({
+      name: 'Fine Axe',
+      desc: `The axe is made of the frozen tears of a giant.
+      Tou use it you can ***swing at*** things.`,
+      onUse: () => {
+        println(`You swing the ***Fine Axe*** aimlessly.
+        The nearby spirits are terrified.`)
+      },
+      onSwing: () => println('What a concept!')
+    });
+    initializedDisk.inventory.push({
+      id: 'Henki',
+      name: 'Henki',
+      desc: `It is a formless spirit. A life force. It pihises.`,
+      isTakeable: true,
+      onTake: () => {
+        const room = getRoom('beginning');
+        delete room.exits[0].block;
+        if (!disk.helpCommands.includes('inv')) disk.helpCommands.push('inv');
+        println(`It is a spirit called **Henki**.
+        It circles around you, measuring you.
+        Slowly, you become intertwined with it
+        till death do you part.
+        *Type **inv** to see your inventory.*
+        *Type **help** to see available commands.*`);
+      },
+      onUse: () => {
+        println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
+      },
+      onSwing: () => {
+        initializedDisk.inventory = initializedDisk.inventory.filter(item => item.name !== 'Henki')
+        toHel(`It's all foggy and cold.
+        You feel empty inside.
+        You realise you have been dead for a while now.`)
+      },
+      onEat: () => println(`What a concept!`)
+    });
     initializedDisk.inventory.push({
       id: 'Muisti',
       name: 'Muisti',
@@ -569,32 +569,35 @@ useHeimdallrsEar = () => {
 
 let randomThoughts = [
   `I wonder what my face looks like`,
-  `My spirits are what I am`,
+  `My spirits are me. I am my spirits`,
   `Why would I even continue?`,
-  `I must find purpose in this world`,
+  `I must find a purpose in this world`,
   `I have a really bad memory`,
-  `Is it called death if I lose my ***Henki*** spirit?`,
-  `What happens if I lose my ***Ajatus*** spirit?`,
-  `What happens if I lose my ***Muisti*** spirit?`,
-  `What happens if I lose all my spirits?`,
+  `I wonder what happens if I lose my ***Henki*** spirit`,
+  `I wonder what happens if I lose my ***Ajatus*** spirit`,
+  `I wonder what happens if I lose my ***Muisti*** spirit`,
+  `I wonder what happens if I lose my ***Keho***`,
+  `I wonder what happens if I lose all my spirits?`,
   `I wonder if there are more spirits to find`,
-  `How many spirits does it take to be whole?`,
+  `I wonder how many spirits will it take to feel whole?`,
   `I should probably take some time to ***feel*** every now and then`,
   `Swinging at things with axes is such joy`,
   `I should probably find food at some point`,
   `I wonder how my ***Henki*** is doing`,
-  `Why must I have such a weak ***Muisti*** spirit`,
+  `Oh why must I have such a weak ***Muisti*** spirit`,
   `If I'm not careful with my ***Muisti*** spirit I might lose a lot of progress`,
-  `I wonder if there's afterlife? Could this be an afterlife already?`,
-  `I wonder who all these characters are in this world`,
+  `I wonder if there's an afterlife? Or could this be an afterlife already?`,
+  `I wonder how the people I interact with see me`,
   `My ***Muisti*** spirit is so bad I have no clue where I am`,
   `I wonder how big this world is`,
   `Being lost is not so bad. Having no purpose – that's bad.`,
   `I wonder if I'd live forever just by stopping here`,
   `It's so relaxing to ***close*** my eyes for a moment`,
-  `I wonder what things I could eat here`,
+  `Could there be something here I could eat?`,
   `There must be some way to erase my memory`,
-  `What were my ***quests*** again?`
+  `What were my ***quests*** again?`,
+  `I want to fight something!`,
+  `Must I fight to survive?`
 ]
 
 let combatThoughts = [
@@ -612,7 +615,19 @@ let combatThoughts = [
   `I wonder if there's more I could do in this situation`,
   `Would it be shameful to die here?`,
   `What would I gain by defeating this foe?`,
-  `Any mistake could lead to an early death`,
+  `Any mistake here could lead to an early death`,
+  `This is so exciting!`,
+  `I could do this all day!`,
+  `Now this is a proper way to live!`,
+  `Live by the axe, die by the axe!`,
+  `What are we even doing here? Why are we fighting?`,
+  `To the death!`,
+  `I hope this is not it for me`,
+  `I can't die here! I have so much more to do`,
+  `Is it time to meet the ancestors?`,
+  `I wonder if the fate of this battle is predetermined`,
+  `There must be something more I could do here`,
+  `Perhaps I could try to sympathise with my foe`
 ]
 
 think = () => {
@@ -627,10 +642,10 @@ think = () => {
   }
 }
 
-toValhalla = (foe) => {
+toValhall = (foe) => {
   disk.inventory = disk.inventory.filter(i => i.name !== 'Henki')
   disk.inventory = disk.inventory.filter(i => i.name !== 'Keho')
-  enterRoom('valhalla')
+  enterRoom('valhall')
   player.henki = false;
   println(`A faint memory of a **${foe.name[0]}** lingers in your mind. 
   It all seemed so important at the time...
@@ -688,7 +703,7 @@ hitOrMiss = (foe) => {
         player.hp -= damage;
       } else {
         player.hp = 0
-        toValhalla(foe)
+        toValhall(foe)
       }
     }
   }

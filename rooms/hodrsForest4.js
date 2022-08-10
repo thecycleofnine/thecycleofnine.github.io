@@ -6,7 +6,11 @@ const hodrsForest4 = {
     There's some pearly white ***berries*** on the mossy forest floor.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`The moss feels soft under your feet. Maybe it's not so bad to get lost in this place after all.`)
+        if (player.eyesAreOpen) {
+            println(`The moss feels soft under your feet. Maybe it's not so bad to get lost in this place after all.`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

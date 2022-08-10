@@ -2,6 +2,13 @@ const chieftainsHouseEntrance = {
     id: 'chieftainsHouseEntrance',
     name: `Entrance to Chieftain's House`,
     desc: `The Chieftain's **Housecarl** is standing guard at the entrance to the ***Chieftain's House***.`,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'longsword',
@@ -9,17 +16,17 @@ const chieftainsHouseEntrance = {
             onSwing: () => {
                 const room = getRoom('chieftainsHouseEntrance')
                 println(`You hear a swish as your head drops from your shoulders.`)
-                toValhalla(room.foes[0])
+                toValhall(room.foes[0])
             },
             onEat: () => {
                 const room = getRoom('chieftainsHouseEntrance')
                 println(`You hear a swish as your head drops from your shoulders.`)
-                toValhalla(room.foes[0])
+                toValhall(room.foes[0])
             },
             onTake: () => {
                 const room = getRoom('chieftainsHouseEntrance')
                 println(`You hear a swish as your head drops from your shoulders.`)
-                toValhalla(room.foes[0])
+                toValhall(room.foes[0])
             }
         },
         {
@@ -36,7 +43,7 @@ const chieftainsHouseEntrance = {
           isArmed: true,
           onEngage: () => {
               const room = getRoom('chieftainsHouseEntrance')
-              toValhalla(room.foes[0])
+              toValhall(room.foes[0])
           },
           hitDescriptions: [
             ``,

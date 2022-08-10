@@ -5,7 +5,11 @@ const hodrsForest1 = {
     There are ***wind chimes*** made of bones attached to tree branches all over.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`The spirits of the forest are following you closely. You feel their cool breeze as they float around.`)
+        if (player.eyesAreOpen) {
+            println(`The spirits of the forest are following you closely. You feel their cool breeze as they float around.`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

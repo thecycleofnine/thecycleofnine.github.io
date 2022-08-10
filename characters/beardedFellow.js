@@ -4,7 +4,7 @@ const beardedFellow = {
     // printed when the player looks at the character
     desc: `His build is like a tree trunk.
     The long reddish beard is well-groomed and dripping with mead.
-    His lively blue eyes contain the whole exploding universe.`,
+    His sharp blue eyes contain the whole slowly exploding universe.`,
     onSwing: () => {
       println(`The **Bearded Fellow** catches the axe midair.
       There's a whole raging universe in his eyes.
@@ -200,7 +200,7 @@ const beardedFellow = {
         line: `The **Bearded Fellow** is a lot faster than you.
         He swings his axe with a mighty force towards your neck.`,
         onSelected: () => {
-          enterRoom('valhalla')
+          enterRoom('valhall')
         }
       },
     ],

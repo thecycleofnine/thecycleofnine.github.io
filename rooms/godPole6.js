@@ -3,6 +3,13 @@ const godPole6 = {
     name: `Sixth wooden pole`,
     desc: `TBA`,
     printDescriptions: true,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'pole',

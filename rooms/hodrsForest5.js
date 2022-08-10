@@ -6,8 +6,12 @@ const hodrsForest5 = {
     ***Mushlings*** are puffing on the forest floor. They seem rather talkative.`,
     printDescriptions: true,
     onFeel: () => {
-        println(`The trees have a dark and venerable feeling to them.
-        The have seen much. They know much. Too much.`)
+        if (player.eyesAreOpen) {
+            println(`The trees have a dark and venerable feeling to them.
+            The have seen much. They know much. Too much.`)
+        } else {
+            println(`TBAclosed`)
+        }
     },
     items: [
         {

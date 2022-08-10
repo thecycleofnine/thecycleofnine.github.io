@@ -6,6 +6,13 @@ const pathToHodrsForest = {
     A memorial ***stone*** has been placed beside the signpost.`,
     printDescriptions: true,
     signpostBroken: false,
+    onFeel: () => {
+        if (player.eyesAreOpen) {
+            println(`TBAopen`)
+        } else {
+            println(`TBAclosed`)
+        }
+    },
     items: [
         {
             name: 'signpost',

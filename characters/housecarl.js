@@ -6,7 +6,7 @@ const housecarl = {
     onSwing: () => {
         const room = getRoom('chieftainsHouseEntrance')
         println(`You hear a swish as your head drops from your shoulders.`)
-        toValhalla(room.foes[0])
+        toValhall(room.foes[0])
     },
     firstConversation: true,
     // optional callback, run when the player talks to this character
