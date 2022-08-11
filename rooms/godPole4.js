@@ -5,7 +5,7 @@ const godPole4 = {
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
-            println(`You feel playful.`)
+            println(`You feel a playful presence.`)
         } else {
             println(`You feel playful but there is also something of grave importance here.
             Manipulation and treachery of some sort? But by whom?`)

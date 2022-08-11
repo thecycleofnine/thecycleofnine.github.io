@@ -45,7 +45,7 @@ const frostLands = {
                 player.inCombat = true;
                 println(`You try to swing high but the axe only reaches the **Giant**'s hip.`)
                 println(`The tall **Frost Giant** doesn't notice you at first. It's growling as it's trying to locate the source of its pain.`)
-                room.desc = `There's a pale **Frost Giant** right in front of you. It's at least 3 meters high.`
+                room.desc = `There's a pale **Frost Giant** towering right in front of you. It's at least 3 meters high.`
             },
             hitDescriptions: [
                 `Your axe cuts deep into the **Giant**'s knee.`,
@@ -97,7 +97,7 @@ const frostLands = {
             desc: `It's formed from the frozen breath of an enormous giant. It's lumpy.`,
             onSwing: () => {
                 println(`The ***Club of Blight*** shatters into hundreds of pieces.
-          The **Frost Giant** looks at its empty hands in bewilderment. It tries desperately to gather the broken pieces from the ground.`)
+                The **Frost Giant** looks at its empty hands in bewilderment. It tries to gather the broken pieces from the ground in a desperate effort to mend the weapon.`)
                 const room = getRoom('frostLands')
                 room.items = room.items.filter(item => item.name !== 'Club of Blight');
                 const giant = room.foes[0];
@@ -105,8 +105,8 @@ const frostLands = {
                 giant.inCombat = false;
                 player.inCombat = false;
                 room.desc = `The icy landscape is beautifully bare. The clear blue skies stand still. 
-          There's a weeping empty-handed **Frost Giant** crouching right in front of you.
-          A bronze ***arc*** stands tall to the ***west***.`
+                There's an empty-handed **Frost Giant** crouching before you. It's weeping and moaning.
+                A bronze ***arc*** stands tall to the ***west***.`
                 delete room.exits[1].block;
             },
         },

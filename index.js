@@ -646,7 +646,8 @@ toValhall = (foe) => {
   disk.inventory = disk.inventory.filter(i => i.name !== 'Henki')
   disk.inventory = disk.inventory.filter(i => i.name !== 'Keho')
   enterRoom('valhall')
-  player.henki = false;
+  player.henki = false
+  player.inCombat = false
   println(`A faint memory of a **${foe.name[0]}** lingers in your mind. 
   It all seemed so important at the time...
   You realise you are quite dead.`)
@@ -658,7 +659,8 @@ toHel = (desc) => {
   disk.inventory = disk.inventory.filter(i => i.name !== 'Keho')
   room.printDescriptions = false
   enterRoom('hel')
-  player.henki = false;
+  player.henki = false
+  player.inCombat = false
   println(desc)
 }
 

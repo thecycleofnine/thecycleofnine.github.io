@@ -1,14 +1,14 @@
 const godPole3 = {
     id: 'godPole3',
     name: `Third wooden pole`,
-    desc: `The carving depicts a gentle goddess wearing silk garment and a keychain on her waist. She is surrounded by unwoven ***threads*** and holding a ***baby***.`,
+    desc: `The carving depicts a gentle goddess wearing silk-like garment and a keychain on her waist. She is surrounded by unwoven ***threads*** and she's holding a ***baby*** in her arms.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
             if (player.friggsBlessing) {
-                println(`You feel protected. Reciprocity has been established.`)
+                println(`You feel a protective presence. Reciprocity has been established.`)
             } else {
-                println(`You feel gentleness and warmth but something is missing.`)
+                println(`You feel a gentle and warm presence but something is missing.`)
             }
         } else {
             if (player.friggsBlessing) {

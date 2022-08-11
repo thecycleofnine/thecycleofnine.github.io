@@ -5,9 +5,9 @@ const godPole2 = {
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
-            println(`TBAopen`)
+            println(`You feel a strengthful presence. There is a feeling of static charge in the air. Something powerful is brewing above.`)
         } else {
-            println(`TBAclosed`)
+            println(`You feel pure strength and passion. There is a feeling of static charge in the air. Tall clouds are forming directly above the god pole.`)
         }
     },
     items: [
