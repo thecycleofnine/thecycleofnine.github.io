@@ -1,5 +1,6 @@
 const hel = {
     id: 'hel',
+    area: 'Hel',
     name: `Hel`,
     desc: ``,
     printDescriptions: true,

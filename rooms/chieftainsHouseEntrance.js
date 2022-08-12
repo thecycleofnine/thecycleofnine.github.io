@@ -1,5 +1,6 @@
 const chieftainsHouseEntrance = {
     id: 'chieftainsHouseEntrance',
+    area: 'Frost village',
     name: `Entrance to Chieftain's House`,
     desc: `The Chieftain's **Housecarl** is standing guard at the entrance to the ***Chieftain's House***.`,
     onFeel: () => {

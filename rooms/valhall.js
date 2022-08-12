@@ -1,5 +1,6 @@
 const valhall = {
     id: 'valhall',
+    area: 'Valhall',
     name: 'Valhall',
     onLook: () => {
         println(`TBA`)
@@ -11,4 +12,7 @@ const valhall = {
             println(`TBAclosed`)
         }
     },
+    exits: [
+        // TBA
+    ]
 }

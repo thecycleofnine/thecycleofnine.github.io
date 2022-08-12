@@ -1,6 +1,7 @@
 const hodrsForest2 = {
     id: 'hodrsForest2',
-    name: `Lost in Hodr's Forest`,
+    area: `Hodr's forest`,
+    name: `Lost in Hodr's forest`,
     desc: `It seems you are utterly and completely lost. The dark forest seems endless in every direction.
     There are ***wind chimes*** made of bones attached to tree branches all over.
     There's some pearly white ***berries*** on the mossy forest floor.`,

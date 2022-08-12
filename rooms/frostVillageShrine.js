@@ -1,5 +1,6 @@
 const frostVillageShrine = {
     id: 'frostVillageShrine',
+    area: 'Frost village',
     name: `Frost Village Shrine`,
     desc: `TBA`,
     onFeel: () => {

@@ -1,5 +1,6 @@
 const uphill = {
     id: 'uphill',
+    area: 'Mountain of beginnings',
     name: 'Uphill',
     desc: `There's a ***Bearded Fellow*** sitting merrily on a wooden ***log***. He's drinking juniper mead. It seems you could ***talk*** (***to***) him. 
     There's a field to the ***east***. Something seems off about it.`,

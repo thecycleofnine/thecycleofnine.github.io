@@ -1,5 +1,6 @@
 const godPole6 = {
     id: 'godPole6',
+    area: 'Fisher village',
     name: `Sixth wooden pole`,
     desc: `The carving depicts a beautiful goddess wearing a feathered ***cloak***. She is riding a ***boar*** with two cats beside her, one on each side. The beautiful goddess is holding a sword and and a round shield and her hair is braided with colorful flowers and herbs.`,
     printDescriptions: true,
@@ -10,25 +11,21 @@ const godPole6 = {
             println(`You feel wild. Primal even. You understand that death is but a transition, which sprouts new beginnings.`)
         }
     },
-    engageInCombat: (name) => {
+    engageInCombat: () => {
+        player.inCombat = true
         const room = getRoom('godPole6')
         room.desc = `The god pole has taken flight with the magical feathery ***cloak***. The boar **Hildisvini** is pawing the ground before you, preparing to charge.`
         room.exits[0].block = `The loyal boar **Hildisvini** blocks your way as you try to escape. You won't get away from this fight so easily.`
         room.exits[1].block = `The loyal boar **Hildisvini** blocks your way as you try to escape. You won't get away from this fight so easily.`
         room.exits[2].block = `The loyal boar **Hildisvini** blocks your way as you try to escape. You won't get away from this fight so easily.`
         room.exits[3].block = `The loyal boar **Hildisvini** blocks your way as you try to escape. You won't get away from this fight so easily.`
-        if (name === 'freyja') {
-            const freyja = getFoeInRoom('Goddess Freyja', 'godPole6')
-            freyja.onEngage()
-            const boar = getFoeInRoom('boar', 'godPole6')
+            const boar = getFoeInRoom('Boar', 'godPole6')
             boar.inCombat = true
-        }
-        if (name === 'boar') {
-            const boar = getFoeInRoom('boar', 'godPole6')
-            boar.onEngage()
             const freyja = getFoeInRoom('Goddess Freyja', 'godPole6')
             freyja.inCombat = true
-        }
+        println(`The feathered ***cloak*** wraps itself around the god pole, which comes alive and soars up to the sky.
+                The cats jump up on the other poles and the **boar** slams down to the ground before you.
+                *You are now in combat with **Freyja*** and **Hildisvini** the boar.`)
     },
     items: [
         {
@@ -37,7 +34,7 @@ const godPole6 = {
             onSwing: () => {
                 if (!player.inCombat) {
                     const room = getRoom('godPole6')
-                    room.engageInCombat('freyja')
+                    room.engageInCombat()
                 } else {
                     const evadeMoves = [
                         `**Freyja** blocks the axe with her sword. Your ears ring from the loud clang of the weapons.`,
@@ -50,7 +47,7 @@ const godPole6 = {
             },
             onEat: () => {
                 const room = getRoom('godPole6')
-                room.engageInCombat('freyja')
+                room.engageInCombat()
             },
         },
         {
@@ -59,13 +56,13 @@ const godPole6 = {
             onSwing: () => {
                 if (!player.inCombat) {
                     const room = getRoom('godPole6')
-                    room.engageInCombat('boar')
+                    room.engageInCombat()
                 }
             },
             onEat: () => {
                 if (!player.inCombat) {
                     const room = getRoom('godPole6')
-                    room.engageInCombat('boar')
+                    room.engageInCombat()
                 }
             },
         },
@@ -100,7 +97,7 @@ const godPole6 = {
     ],
     foes: [
         {
-            name: ['boar', 'The boar', 'Hildisvini'],
+            name: ['Boar', 'The boar', 'Hildisvini'],
             hp: 70,
             alive: true,
             inCombat: false,
@@ -123,12 +120,8 @@ const godPole6 = {
                 }
             },
             onEngage: () => {
-                const boar = getFoeInRoom('boar', 'godPole6')
-                boar.inCombat = true
-                player.inCombat = true
-                println(`The feathered ***cloak*** wraps itself around the god pole, which comes alive and soars up to the sky.
-                    The cats jump up on the other poles and the **boar** slams down to the ground before you.
-                    *You are now in combat with **Freyja*** and **Hildisvini** the boar.`)
+                const room = getRoom('godPole6')
+                room.engageInCombat()
             },
             hitDescriptions: [
                 `The axe cuts off a slice of tusk, which is sent flying accross the Fisher village square.`,
@@ -149,7 +142,7 @@ const godPole6 = {
                 `The boar jumps away from the blade just in time.`,
                 `**Hildisvini** barely escapes the swing by rolling to the side.`,
                 `The animal manages to tackle you right before the hit to avoid any damage.`,
-                `But you lose balance and fall as the boar charges straight for you in the middle of the swing.`,
+                `But you lose your footing and fall as the boar charges straight for you in the middle of the swing.`,
                 `The boar anticipates your movements and jumps away from you.`,
                 `**Freyja** comes in to block the blow with her shield.`,
                 `The shield of **Freyja** protects the boar as she flies between you and **Hildisvini**.`,
@@ -178,19 +171,23 @@ const godPole6 = {
                 `The goddess **Freyja** lands a devastating blow to your back from behind you.`
             ] : [
                 // freyja dead
-                // TBA more
                 `The tusks of the boar scrape you painfully.`,
                 `**Hildisvini** slams its boar tusks hard into your leg.`,
+                `The boar hits you hard in the pelvis with its tusks.`,
+                `**Hildisvini** gores you with its sharp tusks. The pain is blinding.`,
+                `The animal bites into your calf in a frenzy.`,
+                `Pain shoots through your spine as **Hildisvini** rams you down to the ground.`,
+                `The boar kicks you with all its might using its hind legs.`,
+                `You are sent flying as the strong boar rushes into your side.`
             ],
             onDeath: () => {
-                const boar = getFoeInRoom('boar', 'godPole6')
+                const boar = getFoeInRoom('Boar', 'godPole6')
                 boar.alive = false
                 const freyja = getFoeInRoom('Goddess Freyja', 'godPole6')
                 freyja.boarAlive = false
                 const room = getRoom('godPole6')
                 println(`**Hildisvini** squeals loudly as their ***Keho*** fails them. The ***boar*** rolls to the ground lifeless like a sack of flour.
                 **Freyja** lets out a despairing shrill and charges straight at you from the air.`)
-                room.foes = room.foes.filter(f => !f.name.includes('Boar'))
                 room.desc = `Where once was a god pole dedicated to the goddess **Freyja** now lies a feast for the crows.`
                 room.exits[0].block = `**Freyja** swoops in before you as you try to escape. She won't let you get away after killing her **Hildisvini**.`
                 room.exits[1].block = `**Freyja** swoops in before you as you try to escape. She won't let you get away after killing her **Hildisvini**.`
@@ -198,6 +195,7 @@ const godPole6 = {
                 room.exits[3].block = `**Freyja** swoops in before you as you try to escape. She won't let you get away after killing her **Hildisvini**.`
                 const boarItem = getItemInRoom('boar', 'godPole6')
                 boarItem.desc = `The loyal boar is dead. It's lying on the ground lifeless.`
+                boar.desc = `The loyal boar is dead. It's lying on the ground lifeless.`
                 boarItem.onSwing = () => println(`You are defiling the corpse of **Hildisvini**, the loyal boar!`)
                 boarItem.onEat = () => {
                     player.hp = 100
@@ -233,12 +231,8 @@ const godPole6 = {
                 }
             },
             onEngage: () => {
-                const freyja = getFoeInRoom('Goddess Freyja', 'godPole6')
-                freyja.inCombat = true
-                player.inCombat = true
-                println(`The feathered ***cloak*** wraps itself around the god pole, which comes alive and soars up to the sky.
-                        The cats jump up on the other poles and the **boar** slams down to the ground before you.
-                        *You are now in combat with **Freyja*** and **Hildisvini** the boar.`)
+                const room = getRoom('godPole6')
+                room.engageInCombat()
             },
             hitDescriptions: [
                 `**Freyja** flew too low and you manage to ring her temple with the axe. She looks livid.`,
@@ -263,7 +257,7 @@ const godPole6 = {
                 `**Freyja** swirls around in the air with her cloak to avoid the blow.`,
                 `The goddess moves to block the blow with her round shield.`,
                 `There's only a graceful flutter of feathers as **Freyja** uses her ***cloak*** to disappear from your sight momentarily.`,
-                `The shield of the goddess is too quick and deflects the swing away.`,
+                `The shield of the goddess is too quick and deflects the swing away from her.`,
                 `There's a loud clang as **Freyja** blocks the axe with her sword.`,
                 `She quickly points her sword directly at your neck forcing you to stop the swing midway and step back.`,
                 `Her rhythm of movement in the air is too disorienting and you miss embarassingly.`,
@@ -272,6 +266,7 @@ const godPole6 = {
                 You regain your vision after a couple of seconds as the magic spell wanes.`,
                 `But you don't know which side is up and which side is down!
                 You get up from the ground as the magic spell wanes.`,
+                `Your weapons meet with a deafening clang, and the nimble **Freyja** gains the upper hand.`
             ],
             attackDescriptions: this.boarAlive ? [
                 // Hildisvini alive
@@ -295,14 +290,13 @@ const godPole6 = {
                 `You feel untolerable pain as your limbs start to dislocate on their own for some reason.`,
             ],
             onDeath: () => {
-                const boar = getFoeInRoom('boar', 'godPole6')
+                const boar = getFoeInRoom('Boar', 'godPole6')
                 boar.freyjaAlive = false
                 const freyja = getFoeInRoom('Goddess Freyja', 'godPole6')
                 freyja.alive = false
                 const room = getRoom('godPole6')
                 println(`The goddess **Freyja** crashes hard down to the ground lifeless.`)
-                // TBA add Freyja to Hel
-                delete room.foes[1]
+                // TBA add Freyja character to Hel
                 room.desc = `Where once was a god pole dedicated to the goddess **Freyja** now lies a feast for the crows.`
                 const cloakItem = getItemInRoom('cloak', 'godPole6')
                 cloakItem.name = `Feather cloak`

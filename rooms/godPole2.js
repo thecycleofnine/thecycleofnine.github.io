@@ -1,5 +1,6 @@
 const godPole2 = {
     id: 'godPole2',
+    area: 'Fisher village',
     name: `Second wooden pole`,
     desc: `The carving depicts a fearsome god with a massive beard braided in two sections. The god is wearing a helmet and gripping a hammer with one hand and the reins of a chariot pulled by two ***goats*** with the other hand.`,
     printDescriptions: true,

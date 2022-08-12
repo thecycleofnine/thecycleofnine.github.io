@@ -1,6 +1,7 @@
 const frostVillageLift = {
     id: 'frostVillageLift',
-    name: `The Lift`,
+    area: 'Frost village',
+    name: `The lift`,
     desc: `You are standing in a remarkably small lift basket beside the village wall. The basket and the whole lift mechanism is made completely out of ice.
     There's a ***lever*** on the floor.`,
     position: 'down',

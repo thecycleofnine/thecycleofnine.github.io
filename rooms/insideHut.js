@@ -1,6 +1,7 @@
 const insideHut = {
     id: 'insideHut',
-    name: 'Inside the Hut',
+    area: 'Mountain of beginnings',
+    name: 'Inside the hut',
     desc: `You enter the hut. The runes emit a menacing glow as you walk past them.`,
     onEnter: () => {
         const room = getRoom('insideHut');

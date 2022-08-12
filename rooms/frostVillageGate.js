@@ -1,6 +1,7 @@
 const frostVillageGate = {
     id: 'frostVillageGate',
-    name: 'Frost Village gate',
+    area: 'Frost village',
+    name: 'Frost village gate',
     desc: `You find yourself standing in front of a wall of ice. It's encircling a Giant village. There are impassable mountains behind it.
     There's a small **Frost Giant** on lookout sitting at the edge of the wall above the village ***gate***.`,
     gateOpen: false,

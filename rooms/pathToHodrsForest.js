@@ -1,5 +1,6 @@
 const pathToHodrsForest = {
     id: 'pathToHodrsForest',
+    area: `Hodr's forest`,
     name: `Dirt road`,
     desc: `A narrow dirt road leads to a dark forest in the ***southeast***.
     There's a ***signpost*** beside the road where the dirt changes into a mossy forest floor.

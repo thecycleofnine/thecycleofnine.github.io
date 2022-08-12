@@ -1,5 +1,6 @@
 const mountainRidge = {
     id: 'mountainRidge',
+    area: 'Mountain of beginnings',
     name: 'Mountain ridge',
     desc: `You are standing on a narrow ridge near the ***top*** of the mountain. The ***top*** is just an axe's throw to the ***north***. It's so cold up here one's bones could freeze. A large ***boulder*** of ice has something written to it.`,
     onFeel: () => {

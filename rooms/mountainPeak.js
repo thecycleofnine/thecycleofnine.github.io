@@ -1,5 +1,6 @@
 const mountainPeak = {
     id: 'mountainPeak',
+    area: 'Mountain of beginnings',
     name: 'Mountain peak',
     desc: `DESCRIBE THE LAND (VISTA) HERE.
     There's a bronze ***arc*** standing on the highest point of the mountain peak to the ***east***. It seems to be some kind of a gate. The topside of the ***arc*** is shooting colorless waves high into the purple sky.`,

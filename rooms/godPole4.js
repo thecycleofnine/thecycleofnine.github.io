@@ -1,5 +1,6 @@
 const godPole4 = {
     id: 'godPole4',
+    area: 'Fisher village',
     name: `Fourth wooden pole`,
     desc: `The carving depicts a beautiful god, as if he was shining. His modest blonde beard has many tidy braids with pretty beads at the ends. The god ***pole*** smells nice and everything about it is very pleasant.`,
     printDescriptions: true,

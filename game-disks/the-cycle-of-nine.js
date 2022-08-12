@@ -1,6 +1,7 @@
 const demoDisk = {
   roomId: 'godPole6', // the ID of the room the player starts in
   roomHistory: [],
+  mapLocations: [],
   inputs: [''],
   inputsPos: 0,
   helpCommands: ['look (at)', 'open', 'feel', 'go', 'quests'],
@@ -49,6 +50,7 @@ const demoDisk = {
     fisherVillageGate,
     fisherVillageSquare,
     fisherVillageAltar,
+    fisherVillageButik,
     pathToHodrsForest,
     hodrsForest1,
     hodrsForest2,
@@ -83,5 +85,6 @@ const demoDisk = {
     trickster,
     mushlings,
     theThree,
+    fisherVillageMerchant,
   ],
 };

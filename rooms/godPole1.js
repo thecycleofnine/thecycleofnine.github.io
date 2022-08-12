@@ -1,5 +1,6 @@
 const godPole1 = {
     id: 'godPole1',
+    area: 'Fisher village',
     name: `First wooden pole`,
     desc: `The carving depicts a god with a well-groomed ***beard*** and extraordinarily sharp eyes. The eyes are not fixated on anything in particular but instead they seem to perceive everything at once. The god is gripping a blowing horn with the right hand and a decorative sword with the left.`,
     printDescriptions: true,

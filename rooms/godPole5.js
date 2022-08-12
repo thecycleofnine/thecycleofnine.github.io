@@ -1,5 +1,6 @@
 const godPole5 = {
     id: 'godPole5',
+    area: 'Fisher village',
     name: `Fifth wooden pole`,
     desc: `The carving depicts a sly god. A genderfluid god and a shape-shifter god. Below them there are smaller carvings of a ***serpent***, a ***wolf***, a ***girl*** and a peculiar-looking ***horse***.`,
     printDescriptions: true,

@@ -5,6 +5,7 @@ let disk;
 let inputs;
 let inputsPos;
 let roomHistory;
+let mapLocations;
 
 // define list style
 let bullet = '•';
@@ -27,14 +28,15 @@ let init = (disk) => {
     room.visits = 0;
     return room;
   });
-  
+
   player = disk.player;
   inputs = disk.inputs;
   inputsPos = disk.inputsPos;
   roomHistory = disk.roomHistory;
+  mapLocations = disk.mapLocations;
   mute = true;
 
-  if (!initializedDisk.inventory) { 
+  if (!initializedDisk.inventory) {
     initializedDisk.inventory = [];
 
     // REMOVE THIS
@@ -160,7 +162,7 @@ let setup = () => {
   });
 
   input.addEventListener('focusout', () => {
-    input.focus({preventScroll: true});
+    input.focus({ preventScroll: true });
   });
 };
 
@@ -184,11 +186,11 @@ let playAudio = (filename) => {
 let muteAudio = () => {
   if (mute) {
     audio.play()
-    document.getElementById("mute").src="resources/audio-not-muted.png";
+    document.getElementById("mute").src = "resources/audio-not-muted.png";
     mute = false
   } else {
     audio.pause()
-    document.getElementById("mute").src="resources/audio-muted.png";
+    document.getElementById("mute").src = "resources/audio-muted.png";
     mute = true
   }
 }
@@ -204,16 +206,16 @@ let save = (name) => {
 // (optionally accepts a name for the save)
 let load = (name) => {
   const save = localStorage.getItem(name);
-  
+
   if (!save) {
     println(`Save file not found.`);
     return;
   }
-  
+
   disk = JSON.parse(save, (key, value) => {
     try {
       const evaled = eval(value);
-      if ((key === 'id' || key === 'roomId') && typeof(evaled) === 'object' && evaled.id) {
+      if ((key === 'id' || key === 'roomId') && typeof (evaled) === 'object' && evaled.id) {
         return evaled.id;
       } else {
         return evaled;
@@ -226,6 +228,7 @@ let load = (name) => {
   inputs = disk.inputs;
   inputsPos = disk.inputsPos;
   roomHistory = disk.roomHistory;
+  mapLocations = disk.mapLocations;
 
   enterRoom(disk.roomId);
 };
@@ -263,7 +266,7 @@ let look = () => {
   }
 
   if (typeof room.onLook === 'function') {
-    room.onLook({disk, println});
+    room.onLook({ disk, println });
   }
 
   println(room.desc)
@@ -298,7 +301,7 @@ let open = (x) => {
     println(`There is no such thing here.`)
     return
   }
-  if (itemToOpen && typeof(itemToOpen.onOpen) === 'function') {
+  if (itemToOpen && typeof (itemToOpen.onOpen) === 'function') {
     itemToOpen.onOpen()
   } else {
     println(`You can't open that.`)
@@ -326,7 +329,7 @@ let close = (x) => {
     println(`There is no such thing here.`)
     return
   }
-  if (itemToOpen && typeof(itemToOpen.onOpen) === 'function') {
+  if (itemToOpen && typeof (itemToOpen.onOpen) === 'function') {
     itemToOpen.onOpen()
   } else {
     println(`You can't open that.`)
@@ -419,8 +422,8 @@ let feel = () => {
     }
     return;
   }
-  if (typeof(room.onFeel) === 'function') {
-    room.onFeel({println, getItemInInventory})
+  if (typeof (room.onFeel) === 'function') {
+    room.onFeel({ println, getItemInInventory })
   } else {
     println(`Your feelings fail you.`)
   }
@@ -440,9 +443,9 @@ let drink = (name) => {
   if (itemInInventory) {
     item = itemInInventory
   }
-  
-  if (typeof(item.onDrink) === 'function') {
-    item.onDrink({println})
+
+  if (typeof (item.onDrink) === 'function') {
+    item.onDrink({ println })
   } else {
     println(`You can't drink that.`);
   }
@@ -458,9 +461,9 @@ let eat = (name) => {
   const itemInInventory = getItemInInventory(name)
   if (!itemInRoom && !itemInInventory) {
     let charName;
-    if (typeof(name) === 'object') {
+    if (typeof (name) === 'object') {
       charName = name[0]
-    } else if (typeof(name) === 'string') {
+    } else if (typeof (name) === 'string') {
       charName = name
     }
     const character = getCharacter(charName);
@@ -487,9 +490,9 @@ let eat = (name) => {
   if (itemInInventory) {
     item = itemInInventory
   }
-  
-  if (typeof(item.onEat) === 'function') {
-    item.onEat({println})
+
+  if (typeof (item.onEat) === 'function') {
+    item.onEat({ println })
   } else {
     println(`You can't eat that.`);
   }
@@ -627,7 +630,8 @@ let combatThoughts = [
   `Is it time to meet the ancestors?`,
   `I wonder if the fate of this battle is predetermined`,
   `There must be something more I could do here`,
-  `Perhaps I could try to sympathise with my foe`
+  `Perhaps I could try to sympathise with my foe`,
+  `Could there be something here I could quickly eat?`,
 ]
 
 think = () => {
@@ -639,6 +643,51 @@ think = () => {
     const index = Math.floor(Math.random() * randomThoughts.length)
     println(`Your ***Ajatus*** spirit feeds you a thought:
     "${randomThoughts[index]}".`)
+  }
+}
+
+map = () => {
+  if (getItemInInventory('Map')) {
+    println(`You have these areas marked into your map:`)
+    mapLocations.forEach(area => println(area))
+  } else {
+    println(`You don't have a map!`)
+  }
+}
+
+fly = () => {
+  println(`Perhaps you wanted to ***fly to*** somewhere in particular?
+  Your ***map*** can tell you where to go.`)
+}
+
+flyTo = (area) => {
+  area = area.join(' ').replace('to', '').toLowerCase().trim()
+  const locations = mapLocations.map(l => l.toLowerCase())
+  if (getItemInInventory('Feather cloak')) {
+    // if current room is Hel and player has no Hel's blessing, they can't fly out
+    const room = getRoom(disk.roomId)
+    if (room === 'hel' && getItemInInventory(`Hel's Blessing`)) {
+      println(`You try to take the form of an eagle to soar through the skies but it doesn't work!`)
+      return
+    }
+    // TBA if current room is Valhall and leave conditions not met
+    if (locations.includes(area)) {
+      println(`You take the form of an eagle as you soar through the skies.`)
+      if (area === 'Mountain of beginnings') enterRoom('uphill')
+      if (area === 'Fisher village') enterRoom('fisherVillageSquare')
+      if (area === 'Frost lands') enterRoom('frostLands')
+      if (area === 'Frost village') enterRoom('frostVillage')
+      if (area === `Hodr's forest`) {
+        const index = Math.floor(Math.random() * 8)
+        enterRoom(`hodrsForest${index}`)
+        println(`You crash through the trees into the dark forest.`)
+      }
+      if (area === 'Hel' || area === 'Valhall') println(`You can't fly there!`)
+    } else {
+      println(`You don't know where that is.`)
+    }
+  } else {
+    println(`You don't have anything to fly with!`)
   }
 }
 
@@ -688,8 +737,8 @@ hitOrMiss = (foe) => {
     } else {
       foe.hp = 0
       foe.alive = false
-      if (typeof(foe.onDeath) === 'function') {
-        foe.onDeath({println})
+      if (typeof (foe.onDeath) === 'function') {
+        foe.onDeath({ println })
       }
     }
   } else {
@@ -746,23 +795,24 @@ let swingAt = (args) => {
       // swing at foe
       println(`You take a swing at the **${foe.name[0]}** with ***Fine Axe***.`)
       if (!foe.isArmed) {
+        foe.hp = 0
         foe.onDeath();
         return;
       }
       if (foe.inCombat) {
         hitOrMiss(foe)
-      } else {
-          if (typeof(foe.onEngage) === 'function') {
-            foe.onEngage({println})
-          }
+        return
+      }
+      if (!foe.inCombat && typeof (foe.onEngage) === 'function') {
+        foe.onEngage({ println })
       }
 
     } else if (itemInInventory) {
 
       // swing at item
-      if (typeof(itemInInventory.onSwing) === 'function') {
+      if (typeof (itemInInventory.onSwing) === 'function') {
         println(`You take a swing at the ***${itemInInventory.name}*** with ***Fine Axe***.`)
-        itemInInventory.onSwing({println, getCharacter})
+        itemInInventory.onSwing({ println, getCharacter })
       } else {
         println(`You can't swing at that!`)
       }
@@ -770,13 +820,13 @@ let swingAt = (args) => {
     } else if (itemInRoom) {
 
       // swing at item
-      if (typeof(itemInRoom.onSwing) === 'function') {
+      if (typeof (itemInRoom.onSwing) === 'function') {
         if (itemInRoom.name === 'web') {
           println(`Such an act will not be woven.`)
           return
         }
         println(`You take a swing at the ***${itemInRoom.name}*** with ***Fine Axe***.`)
-        itemInRoom.onSwing({println, getCharacter})
+        itemInRoom.onSwing({ println, getCharacter })
       } else {
         println(`You can't swing at that!`)
       }
@@ -785,7 +835,7 @@ let swingAt = (args) => {
 
       // swing at character
       println(`You take a swing at the **${characterName}** with ***Fine Axe***.`)
-      if (typeof(character.onSwing) === 'function') character.onSwing({println})
+      if (typeof (character.onSwing) === 'function') character.onSwing({ println })
 
     }
   }
@@ -853,28 +903,28 @@ let lookAt = (args) => {
       println(`You don\'t notice anything remarkable about it.`);
     }
 
-    if (typeof(item.onLook) === 'function') {
-      item.onLook({disk, println, getRoom, enterRoom, item});
+    if (typeof (item.onLook) === 'function') {
+      item.onLook({ disk, println, getRoom, enterRoom, item });
     }
 
   } else if (character) {
 
-      // Look at a character.
-      if (character.desc) {
-        println(character.desc);
-      } else {
-        println(`You don't notice anything remarkable about them.`);
-      }
+    // Look at a character.
+    if (character.desc) {
+      println(character.desc);
+    } else {
+      println(`You don't notice anything remarkable about them.`);
+    }
 
-      if (typeof(character.onLook) === 'function') {
-        character.onLook({disk, println, getRoom, enterRoom, character});
-      }
+    if (typeof (character.onLook) === 'function') {
+      character.onLook({ disk, println, getRoom, enterRoom, character });
+    }
 
   } else if (foe) {
 
     // look at foe
-    if (typeof(foe.onLook) === 'function') {
-      foe.onLook({disk, println, getRoom, enterRoom, foe})
+    if (typeof (foe.onLook) === 'function') {
+      foe.onLook({ disk, println, getRoom, enterRoom, foe })
     }
 
   } else {
@@ -997,15 +1047,15 @@ let talkToOrAboutX = (preposition, x) => {
       ? getCharacter(x, getCharactersInRoom(room.id))
       : disk.conversant;
   let topics;
-  
+
   // give the player a list of topics to choose from for the character
   const listTopics = () => {
     // capture reference to the current conversation
     disk.conversation = topics;
-    
+
     if (topics.length) {
       const availableTopics = topics.filter(topic => topicIsAvailable(character, topic));
-      
+
       if (availableTopics.length) {
         availableTopics.forEach(topic => println(`${bullet} ${topic.option ? topic.option : topic.keyword}`));
         println(`${bullet} Leave`);
@@ -1040,17 +1090,17 @@ let talkToOrAboutX = (preposition, x) => {
       return;
     }
 
-    if (typeof(character.topics) === 'string') {
+    if (typeof (character.topics) === 'string') {
       println(character.topics);
       return;
     }
 
-    if (typeof(character.onTalk) === 'function') {
-      character.onTalk({disk, println, getRoom, enterRoom, room, character});
+    if (typeof (character.onTalk) === 'function') {
+      character.onTalk({ disk, println, getRoom, enterRoom, room, character });
     }
 
     topics = typeof character.topics === 'function'
-      ? character.topics({println, room})
+      ? character.topics({ println, room })
       : character.topics;
 
     if (!topics.length && !Object.keys(topics).length) {
@@ -1074,6 +1124,7 @@ let talkToOrAboutX = (preposition, x) => {
         endConversation();
         println(`*You end the conversation.*`);
       } else if (disk.conversation && disk.conversation[response]) {
+        console.log(disk.conversation[response]) // remove
         disk.conversation[response].onSelected();
       } else {
         const topic = disk.conversation.length && conversationIncludesTopic(disk.conversation, response);
@@ -1083,7 +1134,7 @@ let talkToOrAboutX = (preposition, x) => {
             println(topic.line);
           }
           if (topic.onSelected) {
-            topic.onSelected({disk, println, getRoom, enterRoom, room, character});
+            topic.onSelected({ disk, println, getRoom, enterRoom, room, character });
           }
           // add the topic to the log
           character.chatLog.push(getKeywordFromTopic(topic));
@@ -1096,7 +1147,7 @@ let talkToOrAboutX = (preposition, x) => {
       // continue the conversation.
       if (disk.conversation) {
         topics = typeof character.topics === 'function'
-          ? character.topics({println, room})
+          ? character.topics({ println, room })
           : character.topics;
         listTopics(character);
       }
@@ -1147,13 +1198,13 @@ let takeItem = (itemName) => {
       room.items.splice(itemIndex, 1);
 
       if (typeof item.onTake === 'function') {
-        item.onTake({disk, println, room, getRoom, enterRoom, item});
+        item.onTake({ disk, println, room, getRoom, enterRoom, item });
       } else {
         println(`You took the ***${getName(item.name)}***.`);
       }
     } else {
       if (typeof item.onTake === 'function') {
-        item.onTake({disk, println, room, getRoom, enterRoom, item});
+        item.onTake({ disk, println, room, getRoom, enterRoom, item });
       } else {
         println(item.block || `You can't take that.`);
       }
@@ -1211,9 +1262,9 @@ let useItem = (itemName) => {
   // use item and give it a reference to the game
   if (typeof item.onUse === 'string') {
     const use = eval(item.onUse);
-    use({disk, println, getRoom, enterRoom, item});
+    use({ disk, println, getRoom, enterRoom, item });
   } else if (typeof item.onUse === 'function') {
-    item.onUse({disk, println, getRoom, enterRoom, item});
+    item.onUse({ disk, println, getRoom, enterRoom, item });
   }
 };
 
@@ -1307,6 +1358,7 @@ let commands = [
     quests,
     swing: swingAt,
     think,
+    map,
   },
   // one argument (e.g. "go north", "take book")
   {
@@ -1328,6 +1380,7 @@ let commands = [
     mistletoe: mistletoe,
     x: x => lookAt([null, x]), // IF standard shortcut for look at
     t: x => talkToOrAboutX('to', x), // IF standard shortcut for talk
+    f: x => flyTo(x)
   },
   // two+ arguments (e.g. "look at key", "talk to mary")
   {
@@ -1335,6 +1388,7 @@ let commands = [
     swing: swingAt,
     eat: eat,
     drink: drink,
+    fly: flyTo,
     say(args) {
       const str = args.reduce((cur, acc) => cur + ' ' + acc, '');
       sayString(str);
@@ -1395,7 +1449,7 @@ const inspirationalQuotes = [
 
 const pickQuote = () => {
   const index = Math.floor(Math.random() * inspirationalQuotes.length);
-  return inspirationalQuotes[index]; 
+  return inspirationalQuotes[index];
 }
 
 // process user input & update game state (bulk of the engine)
@@ -1432,7 +1486,7 @@ let applyInput = (input) => {
     } else {
       const room = getRoom(disk.roomId)
       // wrong answer to Bearded Fellow's question
-      if (room.id === 'nextToHut' && inputs[inputs.length-2].toLowerCase() === 'what') {
+      if (room.id === 'nextToHut' && inputs[inputs.length - 2].toLowerCase() === 'what') {
         println(`"Wrong!" bellows the **Bearded Fellow** as he swings his axe with great force.`)
         toHel(`You have a faint memory of stealing from the wrong person.
         You realise you are quite dead.`)
@@ -1508,10 +1562,10 @@ let println = (line, className) => {
   str =
     // if this is an array of lines, pick one at random
     Array.isArray(line) ? pickOne(line)
-    // if this is a method returning a string, evaluate it
-    : typeof line  === 'function' ? line()
-    // otherwise, line should be a string
-    : line;
+      // if this is a method returning a string, evaluate it
+      : typeof line === 'function' ? line()
+        // otherwise, line should be a string
+        : line;
 
   const output = document.querySelector('#output');
   const newLine = document.createElement('div');
@@ -1595,7 +1649,7 @@ let autocomplete = () => {
     const longestCommonStartingSubstring = (arr1) => {
       const arr = arr1.concat().sort();
       const a1 = arr[0];
-      const a2 = arr[arr.length-1];
+      const a2 = arr[arr.length - 1];
       const L = a1.length;
       let i = 0;
       while (i < L && a1.charAt(i) === a2.charAt(i)) {
@@ -1604,7 +1658,7 @@ let autocomplete = () => {
       return a1.substring(0, i);
     };
 
-    input.value = [...wordsSansStub,longestCommonStartingSubstring(matches)].join(' ');
+    input.value = [...wordsSansStub, longestCommonStartingSubstring(matches)].join(' ');
   } else {
     input.value = [...wordsSansStub, matches[0]].join(' ');
   }
@@ -1649,20 +1703,23 @@ let getQuest = (id) => {
 
 // remove punctuation marks from a string
 // string -> string
-let removePunctuation = str => str.replace(/[.,\/#?!$%\^&\*;:{}=\_`~()]/g,"");
+let removePunctuation = str => str.replace(/[.,\/#?!$%\^&\*;:{}=\_`~()]/g, "");
 
 // remove extra whitespace from a string
 // string -> string
-let removeExtraSpaces = str => str.replace(/\s{2,}/g," ");
+let removeExtraSpaces = str => str.replace(/\s{2,}/g, " ");
 
 // move the player into room with passed ID
 // string -> nothing
 let enterRoom = (id) => {
-  if (typeof(id) === 'object' && id.id) id = id.id;
+  if (typeof (id) === 'object' && id.id) id = id.id;
   roomHistory.push(id)
   player.inCombat = false;
   const room = getRoom(id);
-  
+  if (room.area && !mapLocations.includes(room.area)) {
+    mapLocations.push(room.area)
+  }
+
   if (!room) {
     println(`That exit doesn't seem to go anywhere.`);
     return;
@@ -1671,14 +1728,14 @@ let enterRoom = (id) => {
   if (room.music) {
     playAudio(room.music);
   }
-  
+
   if (room.foes) {
     room.foes.forEach(foe => {
       if (foe.inCombat === true) {
         player.inCombat = true
         return;
       }
-    }) 
+    })
   }
 
   if (player.eyesAreOpen) {
@@ -1702,7 +1759,7 @@ let enterRoom = (id) => {
   disk.roomId = id;
 
   if (typeof room.onEnter === 'function') {
-    room.onEnter({disk, println, getRoom, enterRoom});
+    room.onEnter({ disk, println, getRoom, enterRoom });
   }
 
   // reset any active conversation
@@ -1723,8 +1780,8 @@ let objectHasName = (obj, name) => {
     name = newName
   }
 
-  if (typeof(name) === 'string') name = name.toLowerCase()
-  if (typeof(obj) === 'string') return obj.includes(name)
+  if (typeof (name) === 'string') name = name.toLowerCase()
+  if (typeof (obj) === 'string') return obj.includes(name)
 
   // characters
   if (Array.isArray(obj.name)) {
@@ -1735,7 +1792,7 @@ let objectHasName = (obj, name) => {
     return false
   }
 
-  if (typeof(obj.name) === 'string') {
+  if (typeof (obj.name) === 'string') {
     if (obj.name.toLowerCase().includes(name) || name.includes(obj.name.toLowerCase())) return true
     return false
   }

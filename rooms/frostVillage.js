@@ -1,6 +1,7 @@
 const frostVillage = {
     id: 'frostVillage',
-    name: 'Frost Village',
+    area: 'Frost village',
+    name: 'Frost village',
     desc: `You are standing in the middle of a Giant village.
     There are Frost Giants of all sizes peeking over small ice ridges and Giant houses. You feel unblinking blue gazes coming from all directions.
     The whole village seems to have halted on your arrival.  

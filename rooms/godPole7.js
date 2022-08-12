@@ -1,5 +1,6 @@
 const godPole7 = {
     id: 'godPole7',
+    area: 'Fisher village',
     name: `Seventh wooden pole`,
     desc: `TBA`,
     printDescriptions: true,

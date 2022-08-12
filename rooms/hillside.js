@@ -1,5 +1,6 @@
 const hillside = {
     id: 'hillside',
+    area: 'Mountain of beginnings',
     name: `Hillside`,
     desc: `You're on a rocky path. There's a broken down ***carriage***, which is nearly blocking the way.
     The path down ***south*** seems to lead to an old fisher village.

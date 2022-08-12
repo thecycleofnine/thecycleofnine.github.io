@@ -1,5 +1,6 @@
 const godPole3 = {
     id: 'godPole3',
+    area: 'Fisher village',
     name: `Third wooden pole`,
     desc: `The carving depicts a gentle goddess wearing silk-like garment and a keychain on her waist. She is surrounded by unwoven ***threads*** and she's holding a ***baby*** in her arms.`,
     printDescriptions: true,

@@ -1,5 +1,6 @@
 const chieftainsHouse = {
     id: 'chieftainsHouse',
+    area: 'Frost village',
     name: `Chieftain's House`,
     desc: `The house is a long hall. Wooden tables stand decorated on each side filling the whole depth of the hall. There's a big fireplace at the center. Small Giant servants hustle around hurrily.
     The **Chieftain** sits comfortably on a throne covered with wolfskins.`,

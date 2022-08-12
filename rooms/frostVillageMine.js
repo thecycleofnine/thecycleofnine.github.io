@@ -1,5 +1,6 @@
 const frostVillageMine = {
     id: 'frostVillageMine',
+    area: 'Frost village',
     name: `Dark Mine`,
     desc: `TBA`,
     onFeel: () => {
@@ -9,4 +10,7 @@ const frostVillageMine = {
             println(`TBAclosed`)
         }
     },
+    exits: [
+        // TBA
+    ]
 }

@@ -1,5 +1,6 @@
 const mountainTrail = {
     id: 'mountainTrail',
+    area: 'Mountain of beginnings',
     name: 'Mountain trail',
     desc: `The snows of the serpentine trail squeak under your feet. The icy winds create small snow whirlwinds in the air.
     The ***top*** of the mountain in the ***east*** is clearly visible from here.

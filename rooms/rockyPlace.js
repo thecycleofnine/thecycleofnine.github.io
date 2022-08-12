@@ -1,5 +1,6 @@
 const rockyPlace = {
     id: 'rockyPlace',
+    area: 'Mountain of beginnings',
     name: 'Rocky place',
     desc: `You crawl through the mushy darkness and emerge from what seems to be the trunk of a tree. You splash hard onto a rocky surface.
     It's a lot less mushy now.
@@ -8,8 +9,8 @@ const rockyPlace = {
         playAudio('dypt-inne-i-skogen.mp3');
         const room = getRoom('rockyPlace');
         room.desc = `You are on a mountain range. The cloudy sky is dark purple. There are **weeds** swaying in the light breeze beside you glowing violet.
-      You can try to ***look at*** them.
-      The **tree** from which you emerged is to the ***south***.`;
+                    You can try to ***look at*** them.
+                    The **tree** from which you emerged is to the ***south***.`;
     },
     onFeel: () => {
         if (player.eyesAreOpen) {

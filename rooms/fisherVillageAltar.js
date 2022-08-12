@@ -1,5 +1,6 @@
 const fisherVillageAltar = {
     id: 'fisherVillageAltar',
+    area: 'Fisher village',
     name: 'Fisher village altar',
     desc: `You are standing before a wooden ***pole*** three times your height. It's carved from a thick ash tree. There's an ***altar*** at the base.`,
     onFeel: () => {

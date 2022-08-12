@@ -1,5 +1,6 @@
 const nextToHut = {
     id: 'nextToHut',
+    area: 'Mountain of beginnings',
     name: 'Beside a Clay Hut',
     desc: `There's a small hut made of clay with a straw roof. Its ***entrance*** is to the ***south***.
     To the ***east*** there's a steep path up a foul-looking mountain. The peak is covered in thick sheets of ice. Some kind of energy is rising from the top towards the purple sky.`,

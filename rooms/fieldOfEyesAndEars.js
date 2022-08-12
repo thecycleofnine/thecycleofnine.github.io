@@ -1,5 +1,6 @@
 const fieldOfEyesAndEars = {
     id: 'fieldOfEyesAndEars',
+    area: 'Mountain of beginnings',
     name: 'Field of eyes and ears',
     desc: `You are standing on a field where one could grow flowers. Instead there are hundreds of ***eyes*** and ***ears*** growing from the dry soil.
     A path to the ***south*** seems to lead down from the mountain range.

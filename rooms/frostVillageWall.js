@@ -1,5 +1,6 @@
 const frostVillageWall = {
     id: 'frostVillageWall',
+    area: 'Frost village',
     name: `The Wall`,
     desc: `The lift brought you to the top of the wall. It's slippery up here. You can barely see the bronze arc to the ***west*** where you came from. Impassable mountains cover the landscape on the other side of the village from north to south. The small **Frost Giant** is sitting at the edge of the wall beside you.`,
     onFeel: () => {

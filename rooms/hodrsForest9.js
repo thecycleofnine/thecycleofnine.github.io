@@ -1,6 +1,7 @@
 const hodrsForest9 = {
     id: 'hodrsForest9',
-    name: `Center of Hodr's Forest`,
+    area: `Hodr's forest`,
+    name: `Center of Hodr's forest`,
     desc: `You have found your way to the center of Hodr's Forest.
     A single beam of light illuminates ***mistletoe*** on the mossy ground.`,
     printDescriptions: true,

@@ -1,6 +1,7 @@
 const frostLands = {
     id: 'frostLands',
-    name: 'Frost Lands',
+    area: 'Frost lands',
+    name: 'Frost lands',
     desc: `You are standing on a stunning icy plain. The sky has turned from purple to blue and the clouds themselves seem to be frozen. The extreme cold of this land doesn't bother you, surprisingly.
     An enormous **Frost Giant** is slowly shuffling towards you.`,
     onLook: () => {
