@@ -2,7 +2,7 @@ const godPole6 = {
     id: 'godPole6',
     area: 'Fisher village',
     name: `Sixth wooden pole`,
-    desc: `The carving depicts a beautiful goddess wearing a feathered ***cloak***. She is riding a ***boar*** with two cats beside her, one on each side. The beautiful goddess is holding a sword and and a round shield and her hair is braided with colorful flowers and herbs.`,
+    desc: `The carving depicts a beautiful goddess wearing a feathered ***cloak***. She is riding a ***boar*** with two cats beside her, one on each side. The beautiful goddess is holding a sword and and a round shield and her hair is braided with colorful petals and herbs.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
