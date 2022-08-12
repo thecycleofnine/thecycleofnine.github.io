@@ -6,10 +6,10 @@ const theThree = {
     They have all the questions. They have all the answers.`,
     alreadyTalked: true,
     onSwing: () => {
-        println(`Such thing will not be woven.`)
+        println(`Such a thing will not be woven.`)
     },
     onEat: () => {
-        println(`Such thing will not be woven.`)
+        println(`Such a thing will not be woven.`)
     },
     // optional callback, run when the player talks to this character
     onTalk: () => {

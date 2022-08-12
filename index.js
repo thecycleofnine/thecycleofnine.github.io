@@ -39,7 +39,7 @@ let init = (disk) => {
   if (!initializedDisk.inventory) {
     initializedDisk.inventory = [];
 
-    // REMOVE THIS
+    // TBA REMOVE SOME OF THESE WHEN THE GAME IS FINISHED
     initializedDisk.inventory.push({
       name: 'Fine Axe',
       desc: `The axe is made of the frozen tears of a giant.
@@ -116,7 +116,7 @@ let init = (disk) => {
         think()
       },
       onSwing: () => println(`Nothing happened. You can't get rid of your thoughts that easily.`),
-      onEat: () => println(`***Ajatus*** is very pleased to feed.`)
+      onEat: () => println(`***Ajatus*** is supposed to be fed, not eaten!`)
     });
   }
 
@@ -435,66 +435,85 @@ let drink = (name) => {
     return
   }
   const itemInRoom = getItemInRoom(name, disk.roomId);
-  const itemInInventory = getItemInInventory(name)
-  let item;
   if (itemInRoom) {
-    item = itemInRoom
+    if (typeof (itemInRoom.onDrink) === 'function') {
+      itemInRoom.onDrink({ println })
+    } else {
+      println(`You can't drink that.`)
+    }
+    return
   }
+  const itemInInventory = getItemInInventory(name)
   if (itemInInventory) {
-    item = itemInInventory
+    if (typeof (itemInInventory.onDrink) === 'function') {
+      itemInInventory.onDrink({ println })
+    } else {
+      println(`You can't drink that.`)
+    }
+    return
   }
-
-  if (typeof (item.onDrink) === 'function') {
-    item.onDrink({ println })
-  } else {
-    println(`You can't drink that.`);
-  }
+  println(`There's no such thing here.`);
 }
 
-// eat things
+// eat all the things
 let eat = (name) => {
   if (name.length === 0) {
     println(`Perhaps you wanted to ***eat*** something in particular?`)
     return
   }
+
+  // it's an item
   const itemInRoom = getItemInRoom(name, disk.roomId);
-  const itemInInventory = getItemInInventory(name)
-  if (!itemInRoom && !itemInInventory) {
-    let charName;
-    if (typeof (name) === 'object') {
-      charName = name[0]
-    } else if (typeof (name) === 'string') {
-      charName = name
-    }
-    const character = getCharacter(charName);
-    if (character) {
-      if (['Hel'].includes(character.name[0])) {
-        println(`**${character.name[0]}** is very confused by your attempt and pushes you away appalled.`)
-        return
-      }
-      if (['The Three'].includes(character.name[0])) {
-        println(`Such an act will not be woven.`)
-        return
-      }
-      println(`The **${character.name[0]}** is very confused by your attempt and pushes you away appalled.`)
-      return;
-    }
-    println(`There is no such thing here.`);
-    return;
-  }
-
-  let item;
   if (itemInRoom) {
-    item = itemInRoom
+    if (typeof (itemInRoom.onEat) === 'function') {
+      itemInRoom.onEat()
+    } else {
+      println(`You can't eat that.`)
+    }
+    return
   }
+  const itemInInventory = getItemInInventory(name)
   if (itemInInventory) {
-    item = itemInInventory
+    if (typeof (itemInInventory.onEat) === 'function') {
+      itemInInventory.onEat()
+    } else {
+      println(`You can't eat that.`)
+    }
+    return
   }
 
-  if (typeof (item.onEat) === 'function') {
-    item.onEat({ println })
+  // it's a foe
+  const foeInRoom = getFoeInRoom(name, disk.roomId)
+  if (foeInRoom) {
+    if (foeInRoom.alive) {
+      println(`You can't eat a foe alive!`)
+    } else {
+      if (typeof (foeInRoom.onEat) === 'function') {
+        foeInRoom.onEat()
+      } else {
+        println(`You can't eat that!`)
+      }
+    }
+    return
+  }
+
+  // it's a character
+  let charName;
+  if (typeof (name) === 'object') {
+    charName = name[0]
+  } else if (typeof (name) === 'string') {
+    charName = name
+  }
+  const character = getCharacter(charName);
+  if (character) {
+    if (typeof(character.onEat) === 'function') {
+      character.onEat()
+    } else {
+      println(`You cannot eat **${character.name[0]}**!`)
+    }
+    return
   } else {
-    println(`You can't eat that.`);
+    println(`There is no such thing here.`)
   }
 }
 
@@ -630,7 +649,7 @@ let combatThoughts = [
   `Is it time to meet the ancestors?`,
   `I wonder if the fate of this battle is predetermined`,
   `There must be something more I could do here`,
-  `Perhaps I could try to sympathise with my foe`,
+  `Perhaps I could try sympathising with my foe`,
   `Could there be something here I could quickly eat?`,
 ]
 
@@ -666,18 +685,18 @@ flyTo = (area) => {
   if (getItemInInventory('Feather cloak')) {
     // if current room is Hel and player has no Hel's blessing, they can't fly out
     const room = getRoom(disk.roomId)
-    if (room === 'hel' && getItemInInventory(`Hel's Blessing`)) {
-      println(`You try to take the form of an eagle to soar through the skies but it doesn't work!`)
+    if (room === 'hel' && !getItemInInventory(`Hel's Blessing`)) {
+      println(`You try to use the ***Feather cloak*** but it doesn't work!`)
       return
     }
     // TBA if current room is Valhall and leave conditions not met
     if (locations.includes(area)) {
-      println(`You take the form of an eagle as you soar through the skies.`)
-      if (area === 'Mountain of beginnings') enterRoom('uphill')
-      if (area === 'Fisher village') enterRoom('fisherVillageSquare')
-      if (area === 'Frost lands') enterRoom('frostLands')
-      if (area === 'Frost village') enterRoom('frostVillage')
-      if (area === `Hodr's forest`) {
+      println(`You take the form of an eagle as you soar through the skies with the ***Feather cloak***.`)
+      if (area === 'mountain of beginnings') enterRoom('uphill')
+      if (area === 'fisher village') enterRoom('fisherVillageSquare')
+      if (area === 'frost lands') enterRoom('frostLands')
+      if (area === 'frost village') enterRoom('frostVillage')
+      if (area === `hodr's forest`) {
         const index = Math.floor(Math.random() * 8)
         enterRoom(`hodrsForest${index}`)
         println(`You crash through the trees into the dark forest.`)
@@ -719,6 +738,12 @@ hitOrMiss = (foe) => {
     return;
   }
   let prob = foe.inCombat ? Math.floor(Math.random() * 100) : 100
+  // penalty for inputting the same thing 3 times in a row
+  if (inputs[inputs.length-1] === inputs[inputs.length-2] &&
+      inputs[inputs.length-1] === inputs[inputs.length-3]) {
+    println(`*The **${foe.name[0]}** adapts to your repetitiveness!*`)
+    prob = 0
+  }
   if (player.friggsBlessing) prob += 20
   if (prob > 40) {
     // hit
@@ -745,17 +770,21 @@ hitOrMiss = (foe) => {
     // miss
     let descIndex = Math.floor(Math.random() * foe.missDescriptions.length)
     println(foe.missDescriptions[descIndex])
-    if (foe.isArmed) {
-      descIndex = Math.floor(Math.random() * foe.attackDescriptions.length)
-      println(foe.attackDescriptions[descIndex])
-      foe.attackDescriptions = foe.attackDescriptions.filter(d => d != foe.attackDescriptions[descIndex])
-      const damage = Math.floor(Math.random() * 10) + 40
-      if (player.hp > damage) {
-        player.hp -= damage;
-      } else {
-        player.hp = 0
-        toValhall(foe)
-      }
+    takeBattleDamage(foe)
+  }
+}
+
+const takeBattleDamage = (foe) => {
+  if (foe.isArmed) {
+    descIndex = Math.floor(Math.random() * foe.attackDescriptions.length)
+    println(foe.attackDescriptions[descIndex])
+    foe.attackDescriptions = foe.attackDescriptions.filter(d => d != foe.attackDescriptions[descIndex])
+    const damage = Math.floor(Math.random() * 10) + 40
+    if (player.hp > damage) {
+      player.hp -= damage;
+    } else {
+      player.hp = 0
+      toValhall(foe)
     }
   }
 }
@@ -1124,7 +1153,6 @@ let talkToOrAboutX = (preposition, x) => {
         endConversation();
         println(`*You end the conversation.*`);
       } else if (disk.conversation && disk.conversation[response]) {
-        console.log(disk.conversation[response]) // remove
         disk.conversation[response].onSelected();
       } else {
         const topic = disk.conversation.length && conversationIncludesTopic(disk.conversation, response);
@@ -1268,36 +1296,6 @@ let useItem = (itemName) => {
   }
 };
 
-// list items in room
-let items = () => {
-  const room = getRoom(disk.roomId);
-  const items = (room.items || []).filter(item => !item.isHidden);
-
-  if (!items.length) {
-    println(`There's nothing here.`);
-    return;
-  }
-
-  println(`This area has these things:`);
-  items
-    .forEach(item => println(`${bullet} ${getName(item.name)}`));
-}
-
-// list characters in room
-let chars = () => {
-  const room = getRoom(disk.roomId);
-  const chars = getCharactersInRoom(room.id).filter(char => !char.isHidden)
-
-  if (!chars.length) {
-    println(`There's no one here.`);
-    return;
-  }
-
-  println(`The characters in this area:`);
-  chars
-    .forEach(char => println(`${bullet} ${getName(char.name)}`));
-};
-
 // display help menu
 let help = () => {
   println(`Available commands:`)
@@ -1341,13 +1339,9 @@ let commands = [
     t: talk, // shortcut for talk
     take,
     get: take,
-    items,
     use,
-    chars,
     help,
     say,
-    //save,
-    //load,
     restore: load,
     open,
     close,
@@ -1452,6 +1446,27 @@ const pickQuote = () => {
   return inspirationalQuotes[index];
 }
 
+const combatPassivityPenalty = () => {
+  if (player.inCombat) {
+    noAttackInLast3Inputs = !inputs[inputs.length-1].includes('swing') && 
+    !inputs[inputs.length-1].includes('throw') && 
+    !inputs[inputs.length-2].includes('swing') &&
+    !inputs[inputs.length-2].includes('throw') && 
+    !inputs[inputs.length-3].includes('swing') &&
+    !inputs[inputs.length-3].includes('throw')
+    if (noAttackInLast3Inputs) {
+      const room = getRoom(disk.roomId)
+      const foesInCombat = room.foes.filter(f => f.inCombat === true)
+      // decide which foe attacks
+      const ind = Math.floor(Math.random() * foesInCombat.length)
+      const foe = foesInCombat[ind]
+      println(`*Your focus has drifted from the battle!*`)
+      takeBattleDamage(foe)
+      return
+    }
+  }
+}
+
 // process user input & update game state (bulk of the engine)
 // accepts optional string input; otherwise grabs it from the input element
 let applyInput = (input) => {
@@ -1459,7 +1474,6 @@ let applyInput = (input) => {
   inputs.push(input);
   inputsPos = inputs.length;
   println(`> ${input}`);
-
   const val = input.toLowerCase();
   setInput(''); // reset input field
 
@@ -1480,6 +1494,7 @@ let applyInput = (input) => {
 
   const exec = (cmd, arg) => {
     if (cmd) {
+      combatPassivityPenalty()
       cmd(arg);
     } else if (disk.conversation) {
       println(`Type only the ***keyword*** to select a line.`);

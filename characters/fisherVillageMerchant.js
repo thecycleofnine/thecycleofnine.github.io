@@ -7,17 +7,21 @@ const fisherVillageMerchant = {
     },
     onTalk: () => {
         println(`"Hello!" greets the **Merchant** cheerfully.
-        "What would you like to buy on this fine day?"`)
+        "What can I do for you on this fine day?"`)
     },
     topics: [
         // TBA more topics (items to sell)
         {
-            option: `***Map***`,
+            option: `***Do*** you sell maps?`,
             removeOnRead: true,
-            line: `"Oh this? This you can have for free, my friend."`,
+            line: `"Certainly!" the **Merchant** turns to grab one from behind the counter. 
+            "But this you can have for free, my friend."
+            The **Merchant** hands you a ***Map***.`,
             onSelected: () => {
                 disk.inventory.push({
                     name: 'Map',
+                    desc: `It's a map containing familiar places.`,
+                    onLook: () => map(),
                     onUse: () => map(),
                     onEat: () => println(`You munch on your ***map***.
                     And now the map is gone!`),
@@ -26,14 +30,14 @@ const fisherVillageMerchant = {
                         disk.inventory = disk.inventory.filter(i => i.name !== 'Map')
                     },
                 })
-            },
+            }
         },
         {
-            option: `***Thanks***.`,
+            option: `***Thank*** you.`,
             removeOnRead: true,
-            prereqs: ['map'],
+            prereqs: ['do'],
             line: `"No problem!" says the **Merchant** in their cheerful tone.
-            "The map is not marked very well so it felt wrong to ask money for it."
+            "The ***Map*** is not marked very well so it felt wrong to ask money for it."
             "You could always add some more places to it, though."`
         },
         {

@@ -70,7 +70,7 @@ const hodrsForest9 = {
                     A single beam of light illuminates the remains of destroyed mistletoe on the mossy ground.`
                 }
                 println(`You munch on the poisonous mistletoe.
-                You have destroyed the mistletoe!
+                *The mistletoe has been destroyed!*
                 ***Frigg's Blessing*** has been bestowed upon you.`)
                 disk.inventory.push({
                     name: `Frigg's Blessing`,

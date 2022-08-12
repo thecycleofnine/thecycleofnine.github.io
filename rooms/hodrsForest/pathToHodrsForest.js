@@ -41,6 +41,7 @@ const pathToHodrsForest = {
     ],
     exits: [
         { dir: 'west', id: 'fisherVillageGate' },
-        { dir: 'southeast', id: 'hodrsForest1', block: `Even when you step towards the forest it doesn't seem to get any closer.` },
+        { dir: 'southeast', id: 'hodrsForest1', block: `You walk towards the forest for a while but it doesn't seem to get any closer.
+        In fact you haven't moved an inch! There is some kind of trickery afoot here.` },
     ]
 }

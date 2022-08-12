@@ -12,6 +12,9 @@ const beardedFellow = {
     },
     // optional callback, run when the player talks to this character
     onTalk: () => println(`"Hello, friend!", the ***Bearded Fellow*** shouts much too loud, "Will you slay many giants!?"`),
+    onEat: () => println(`"Er..." the **Bearded Fellow** leans back in discomfort.
+                        It seems you have caught him off guard.
+                        "I...I don't like that." he says uncomfortably.`),
     // things the player can discuss with the character
     topics: [
       {

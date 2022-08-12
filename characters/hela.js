@@ -16,6 +16,9 @@ const hela = {
         const throne = getItemInRoom('throne', disk.roomId)
         throne.desc = `It's entirely made of fingernails.`
     },
+    onEat: () => {
+        println(`**Hel** is very confused by your attempt and pushes you away appalled.`)
+    },
     // things the player can discuss with the character
     topics: [
         {
