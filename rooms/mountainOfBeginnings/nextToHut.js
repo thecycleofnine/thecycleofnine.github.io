@@ -1,9 +1,9 @@
 const nextToHut = {
     id: 'nextToHut',
     area: 'Mountain of beginnings',
-    name: 'Beside a Clay Hut',
-    desc: `There's a small hut made of clay with a straw roof. Its ***entrance*** is to the ***south***.
-    To the ***east*** there's a steep path up a foul-looking mountain. The peak is covered in thick sheets of ice. Some kind of energy is rising from the top towards the purple sky.`,
+    name: 'Beside a pine Hut',
+    desc: `There's a small pine hut with slightly curved walls. Its ***entrance*** is to the ***south***.
+    To the ***east*** there's a steep path up a foul-looking mountain. The peak is covered in thick sheets of ice. Some kind of energy is rising from the top of the mountain towards the purple sky.`,
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`TBAopen`)
@@ -14,7 +14,7 @@ const nextToHut = {
     items: [
         {
             name: 'entrance',
-            desc: `The entrance has a wooden frame. There are strange runes carved all over it.
+            desc: `The entrance has a wooden frame. There are runes carved all over it.
         The wooden ***door*** is closed.`,
         },
         {

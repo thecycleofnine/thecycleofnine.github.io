@@ -6,9 +6,9 @@ const insideHut = {
     onEnter: () => {
         const room = getRoom('insideHut');
         const nextTo = getRoom('nextToHut')
-        nextTo.desc = `There's a small clay hut with a straw roof. Its ***entrance*** is to the ***south***.
+        nextTo.desc = `There's a small pine hut with slightly curved walls. Its ***entrance*** is to the ***south***.
       You can almost see the top of the mountain to the ***east*** from here.
-      You notice the **Bearded Fellow** striding towards you with a menacing look.`
+      You notice the **Bearded Fellow** striding towards you menacingly.`
         nextTo.exits.forEach(exit => exit.block = `The **Bearded Fellow** grabs you by the shoulder. He has some unanswered questions.`)
         const char = getCharacter('Bearded Fellow')
         char.chatLog = []

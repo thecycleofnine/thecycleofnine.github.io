@@ -521,11 +521,11 @@ let quests = () => {
   println(`Quests:`)
   player.quests.forEach(q => {
     if (q.completed) {
-      println(`${q.name} (Completed)`)
+      println(`${bullet} ${q.name} (Completed)`)
     } else if (q.failed) {
-      println(`${q.name} (Failed)`)
+      println(`${bullet} ${q.name} (Failed)`)
     } else {
-      println(q.name)
+      println(`${bullet} ${q.name}`)
     }
   })
 }
