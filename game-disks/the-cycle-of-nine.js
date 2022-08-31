@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'godPole6', // the ID of the room the player starts in
+  roomId: 'mountainRidge', // the ID of the room the player starts in
   roomHistory: [],
   mapLocations: [],
   inputs: [''],
@@ -86,5 +86,6 @@ const demoDisk = {
     mushlings,
     theThree,
     fisherVillageMerchant,
+    austre,
   ],
 };

@@ -2,8 +2,8 @@ const mountainPeak = {
     id: 'mountainPeak',
     area: 'Mountain of beginnings',
     name: 'Mountain peak',
-    desc: `DESCRIBE THE LAND (VISTA) HERE.
-    There's a bronze ***arc*** standing on the highest point of the mountain peak to the ***east***. It seems to be some kind of a gate. The topside of the ***arc*** is shooting colorless waves high into the purple sky.`,
+    desc: `There's a bronze ***arc*** standing on the highest point of the mountain. You can ***go*** through it to the ***east***. The topside of the ***arc*** is shooting waves of gravity high into the purple sky.
+    In the distance below you can see a fisher village and a dark maze-like forest.`,
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`TBAopen`)

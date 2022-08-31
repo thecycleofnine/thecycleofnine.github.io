@@ -17,18 +17,21 @@ const mountainRidge = {
         },
         {
             name: 'arc',
-            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move. The metal itself seems to be in constant stationary movement.`
+            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move. The metal itself seems to be in constant stationary movement.`,
+            onSwing: () => println(`The arc absorbs the blow like a pond absorbs a falling feather.`)
         },
         {
             name: 'boulder',
             desc: `The boulder reads:
-        "Behold the masterpiece of Austre the Dwarf!
-        This construction channels the gravitational waves from the Earth's core to keep the sky from floating away.
-        You're welcome!"`,
+            "Behold the masterpiece of **Austre** the Dwarf! The arc on the top of this mountain channels gravitational waves from the Earth's core to keep the sky itself from floating away. You're welcome!"`,
+            onSwing: () => {
+                println(`"No, no, no! Don't break my door!" shouts the **Dwarf** from behind the boulder.`)
+                talk()
+            }
         }
     ],
     exits: [
         { dir: 'west', id: 'mountainTrail' },
-        { dir: 'north', id: 'mountainPeak' }
+        { dir: 'north', id: 'mountainPeak', block: `You hear such heart-breaking weeping from behind the ***boulder*** that it simply cannot be ignored.` }
     ]
 }

@@ -36,7 +36,7 @@ const godPole7 = {
     ],
     exits: [
         { dir: 'southeast', id: 'godPole6' },
-        { dir: 'northeast', id: 'godPOle8' },
+        { dir: 'northeast', id: 'godPole8' },
         { dir: 'north', id: 'fisherVillageSquare' },
         { dir: 'east', id: 'fisherVillageAltar' },
     ]

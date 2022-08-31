@@ -79,7 +79,7 @@ const hela = {
                     "Sit down, newling. Have a drink."`)
                 } else {
                     println(`"Sit down, dear. No one is weeping for you", **Hel** says irritably.`)
-                    println(`***The conversation has ended.***`)
+                    println(`*The conversation has ended.*`)
                     endConversation()
                 }
             }
@@ -93,7 +93,7 @@ const hela = {
             "Well, off you go then."`,
             onSelected: () => {
                 endConversation()
-                println(`***The conversation has ended.***`)
+                println(`*The conversation has ended.*`)
                 const char = getCharacter('Hel')
                 char.topics = char.topics.filter(t => !t.option.includes('***Nope***') && !t.option.includes('***Sure***'))
             }
@@ -114,7 +114,7 @@ const hela = {
             "I could withdraw my ***Blessing*** at any time, you know." she says coolly.`,
             onSelected: () => {
                 endConversation()
-                println(`***The conversation has ended.***`)
+                println(`*The conversation has ended.*`)
             }
         }
     ]
