@@ -3,7 +3,7 @@ const fisherVillageGate = {
     area: 'Fisher village',
     name: `Fisher village gate`,
     desc: `You are standing in front of the gate of an old fisher village. The gate is open and there's a ***sign*** above the gate.
-    A dirt road narrows to the ***east*** leading to a forest.`,
+    A dirt road narrows to the ***east***, leading to a forest.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {

@@ -17,7 +17,7 @@ const godPole1 = {
             name: 'beard',
             desc: `It seems to be dripping with fresh mead!`,
             onSwing: () => println(`This is the proper way to groom a beard!`),
-            onEat: () => println(`You lick the wooden ***beard*** like any sane person would. It leaves a meady taste in your mouth.`),
+            onEat: () => println(`You lick the wooden ***beard***, like any sane person would. It leaves a meady taste in your mouth.`),
         }
     ],
     exits: [

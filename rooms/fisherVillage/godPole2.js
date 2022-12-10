@@ -6,7 +6,7 @@ const godPole2 = {
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
-            println(`You feel a strengthful presence. There is a feeling of static charge in the air. Something powerful is brewing above.`)
+            println(`You feel an immensely powerful presence. There is a feeling of static charge in the air. Something is brewing in the air above.`)
         } else {
             println(`You feel pure strength and passion. There is a feeling of static charge in the air. Tall clouds are forming directly above the god pole.`)
         }
@@ -18,11 +18,11 @@ const godPole2 = {
             onSwing: () => {
                 println(`The wooden goats get slaughtered.
                 ***Goat meat** has been added to your inventory.*
-                The goats are resurrected.`)
+                The goats are resurrected in a blink of an eye.`)
                 if (!getItemInInventory('Goat meat (wooden)')) {
                     disk.inventory.push({
                         name: 'Goat meat (wooden)',
-                        desc: `The wooden goat meat is everfresh and nourishing.`,
+                        desc: `The wooden goat meat is ever fresh and nourishing.`,
                         onEat: () => {
                             player.hp = 100
                             println(`You munch on the wooden ***Goat meat*** of the gods.
@@ -30,7 +30,7 @@ const godPole2 = {
                             disk.inventory = disk.inventory.filter(i => i.name !== 'Goat meat (wooden)')
                         },
                         onSwing: () => {
-                            println(`The ***Goat meat*** of the gods is spoiled!`)
+                            println(`The wooden ***Goat meat*** of the gods is spoiled!`)
                             disk.inventory = disk.inventory.filter(i => i.name !== 'Goat meat (wooden)')
                         }
                     })

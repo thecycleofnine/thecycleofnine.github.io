@@ -14,8 +14,8 @@ const nextToHut = {
     items: [
         {
             name: 'entrance',
-            desc: `The entrance has a wooden frame. There are runes carved all over it.
-        The wooden ***door*** is closed.`,
+            desc: `The entrance has a wooden frame. There are runes carved all over it. 
+            The wooden ***door*** is closed.`,
         },
         {
             name: 'door',
@@ -26,10 +26,10 @@ const nextToHut = {
             onSwing: () => {
                 const room = getRoom('nextToHut')
                 room.items[1].desc = 'It was a perfectly good wooden door...'
-                room.items[0].desc = `The entrance has a wooden frame. There are strange runes carved all over it.
-          The wooden ***door*** is in splinters.`
-                println(`The wooden door splinters to pieces.
-          The runes carved into the ***entrance*** frame start to glow.`)
+                room.items[0].desc = `The entrance has a wooden frame. There are strange runes carved all over it. 
+                The wooden ***door*** is in splinters.`
+                println(`The wooden door splinters to pieces. 
+                The runes carved into the ***entrance*** frame start to glow.`)
                 delete getRoom('nextToHut').exits[1].block;
             }
         }

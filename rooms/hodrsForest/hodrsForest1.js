@@ -16,7 +16,7 @@ const hodrsForest1 = {
         {
             name: 'wind chimes',
             desc: `The wind chimes are dangling freely from the tree branches. They are made of brittle bones.`,
-            onSwing: () => println(`The mischievous spirits of the forest sway the wind chimes just slightly to evade your swing.`)
+            onSwing: () => println(`The mischievous spirits of the forest sway the wind chimes just slightly, making you miss your targets.`)
         }
     ],
     exits: [

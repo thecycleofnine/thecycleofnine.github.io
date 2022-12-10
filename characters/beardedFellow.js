@@ -11,7 +11,7 @@ const beardedFellow = {
       "No." he says with a disturbing calmness and lets go of the axe.`);
   },
   // optional callback, run when the player talks to this character
-  onTalk: () => println(`"Hello, friend!", the ***Bearded Fellow*** shouts much too loud, "Will you slay many giants!?"`),
+  onTalk: () => println(`"Hello, friend!" the ***Bearded Fellow*** shouts much too loud, "Will you slay many giants!?"`),
   onEat: () => println(`"Er..." the **Bearded Fellow** leans back in discomfort.
                         It seems you have caught him off guard.
                         "I...I don't like that." he says uncomfortably.`),
@@ -21,7 +21,7 @@ const beardedFellow = {
       option: '***What*** ?',
       removeOnRead: true,
       onSelected: () => {
-        println(`"Will you slay many giants?!", the ***Bearded Fellow*** repeats with a boom as his clear blue eyes twinkle with excitement.`);
+        println(`"Will you slay many giants?!" the ***Bearded Fellow*** repeats with a boom as his clear blue eyes twinkle with excitement.`);
       }
     },
     {
@@ -31,23 +31,23 @@ const beardedFellow = {
       onSelected: () => {
         disk.helpCommands.push('swing at');
         println(`***Quests** accepted.*`)
-        println(`"Ha! I like you!", he booms and the mountains echo.
+        println(`"Ha! I like you!" he booms and the mountains echo.
           The **Bearded Fellow** gulps down his juniper mead in one giant swallow.
-          "Here, take this", he gives you a ***Fine Axe***.`);
+          "Here, take this" he gives you a ***Fine Axe***.`);
         player.quests.push({
           id: 'slayManyGiants',
           name: `Slay many giants`,
           completed: false,
           failed: false
         })
-        disk.characters[0].onTalk = () => println(`"Hello again, friend!", bellows the **Bearded Fellow**.
+        disk.characters[0].onTalk = () => println(`"Hello again, friend!" bellows the **Bearded Fellow**.
           "I see the axe suits you rather well!"`);
         const char = getCharacter('Bearded Fellow')
         char.chatLog = []
         char.topics = [
           {
             option: `***Thank*** you.`,
-            line: `"You're welcome!", he roars with some might.
+            line: `"You're welcome!" he roars with some might.
               "Slay many giants with this axe!"`,
             removeOnRead: true,
             onSelected: () => {
@@ -62,8 +62,8 @@ const beardedFellow = {
           },
           {
             option: `***What*** 's this axe?`,
-            line: `"It's an axe!", he roars with some might.
-              "And a fine one too", he says as he tries to find another bottle of juniper mead without success.
+            line: `"It's an axe!" he roars with some might.
+              "And a fine one too" he says as he tries to find another bottle of juniper mead without success.
               "Slay many giants with this axe!"`,
             removeOnRead: true,
             onSelected: () => {
@@ -92,7 +92,7 @@ const beardedFellow = {
     },
     {
       option: '***No***, I will not slay any giants.',
-      line: `"Oh", the **Bearded Fellow** says disappointed.
+      line: `"Oh" the **Bearded Fellow** says disappointed.
         "It seems we have nothing in common then, goodbye!"`,
       removeOnRead: true,
       onSelected: () => {
@@ -107,13 +107,13 @@ const beardedFellow = {
       removeOnRead: true,
       onSelected: () => {
         if (getItemInInventory('Fine Axe')) {
-          println(`"What do you mean, friend?", the **Bearded Fellow** asks confused.
+          println(`"What do you mean, friend?" the **Bearded Fellow** asks confused.
             "I gave you the axe, didn't I?
             ***Swing at*** many giants with that axe!"`)
           endConversation()
         } else {
-          println(`"Ha!", the **Bearded Fellow** lets out in exitement.
-            "Here you go my friend!", he gives you a **Fine Axe**.
+          println(`"Ha!" the **Bearded Fellow** lets out in exitement.
+            "Here you go my friend!" he gives you a **Fine Axe**.
             "Slay many giants with this axe!"`)
           disk.inventory.push({
             name: 'Fine Axe',
@@ -134,11 +134,11 @@ const beardedFellow = {
       removeOnRead: true,
       onSelected: () => {
         if (player.slayedGiants >= 3) {
-          println(`"Ha! I knew you'd be up to it!", the **Bearded Fellow** laughs.
-            "And it seems to me you have found yourself on the way!", he says as he continues to gulp on his juniper mead.`)
+          println(`"Ha! I knew you'd be up to it!" the **Bearded Fellow** laughs.
+            "And it seems to me you have found yourself on the way!" he says as he continues to gulp on his juniper mead.`)
           endConversation()
         } else {
-          println(`"Liar!", roars the **Bearded Fellow** as he sends you flying with a mighty swing.`)
+          println(`"Liar!" roars the **Bearded Fellow** as he sends you flying with a mighty swing.`)
           toHel(`You have a faint memory of lying to the wrong person.
             You realise you are quite dead.`)
         }
@@ -148,8 +148,8 @@ const beardedFellow = {
       option: `***No*** not yet.`,
       removeOnRead: true,
       onSelected: () => {
-        println(`"Oh.", the **Bearded Fellow** says disappointed.
-          "Well, you have plenty of time, friend!", he encourages you.
+        println(`"Oh." the **Bearded Fellow** says disappointed.
+          "Well, you have plenty of time, friend!" he encourages you.
           "Come to me when you have slain many giants!"`)
         println(`*The conversation has ended.*`)
         endConversation()
@@ -160,8 +160,8 @@ const beardedFellow = {
     {
       option: `***Nothing***.`,
       removeOnRead: true,
-      line: `"Liar!", he booms at your face.
-        "My patience is running thin, arseling.", he grips his axe.
+      line: `"Liar!" he booms at your face.
+        "My patience is running thin, arseling." he grips his axe.
         "What were you doing in my hut!?"`
     },
     {
@@ -170,8 +170,8 @@ const beardedFellow = {
       onSelected: () => {
         const horn = getItemInInventory('Golden Horn')
         if (!horn) {
-          println(`"Well then.", the **Bearded Fellow** calms down.
-            "No harm done! Off to find a new door!", he laughs as he strolls away.`)
+          println(`"Well then." the **Bearded Fellow** calms down.
+            "No harm done! Off to find a new door!" he laughs as he strolls away.`)
           const room = getRoom('nextToHut')
           room.exits.forEach(exit => delete exit.block)
           const char = getCharacter('Bearded Fellow')
@@ -180,7 +180,7 @@ const beardedFellow = {
           char.topics = char.upHillTopicsAfterLeaving
           endConversation()
         } else {
-          println(`"Liar!", shouts the **Bearded Fellow** as he swings his axe with a mighty force.`)
+          println(`"Liar!" shouts the **Bearded Fellow** as he swings his axe with a mighty force.`)
           toHel(`You have a faint memory of lying to the wrong person.
             You realise you are quite dead.`)
         }
@@ -190,13 +190,13 @@ const beardedFellow = {
       option: `***Seems*** unreasonable.`,
       prereqs: ['found'],
       removeOnRead: true,
-      line: `"Not at all, my friend, not at all.", the **Bearded Fellow** responds absentmindedly as he grips his axe.`
+      line: `"Not at all, my friend, not at all." the **Bearded Fellow** responds absentmindedly as he grips his axe.`
     },
     {
       option: `***What*** is the question?`,
       prereqs: ['found'],
       removeOnRead: true,
-      line: `"The question is", proclaims the **Bearded Fellow**.
+      line: `"The question is" proclaims the **Bearded Fellow**.
         "What lies at the center of Hodr's forest?"`,
       onSelected: () => {
         const char = getCharacter('Bearded Fellow')

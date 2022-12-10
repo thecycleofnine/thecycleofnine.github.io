@@ -2,13 +2,13 @@ const godPole8 = {
     id: 'godPole8',
     area: 'Fisher village',
     name: `Eighth wooden pole`,
-    desc: `The carving depicts a stern goddess. Half of her face is scorched black and the other white as a skull. There's eerie beauty in her.`,
+    desc: `The carving depicts a stern goddess. Half of her face is scorched black and the other white as a skull. She has an eerie beauty.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`The air is heavy with inevitability.`)
         } else {
-            println(`You feel the inevitability of death as your appointed death-day approaches.
+            println(`You feel the inevitability of death, as your appointed death day approaches.
             Do you need something to be ready for it?`)
         }
     },

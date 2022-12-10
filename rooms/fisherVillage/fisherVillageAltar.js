@@ -5,7 +5,7 @@ const fisherVillageAltar = {
     desc: `You are standing before a wooden ***pole*** three times your height. It's carved from a thick ash tree. There's an ***altar*** at the base.`,
     onFeel: () => {
         if (player.eyesAreOpen) {
-            println(`You feel an immensely overwhelming presence like you have never felt before.`)
+            println(`You feel an immensely overwhelming presence, like you have never felt before.`)
         } else {
             println(`TBAclosed`)
         }
@@ -14,7 +14,7 @@ const fisherVillageAltar = {
         {
             id: 'pole',
             name: 'Wooden statue',
-            desc: `The carved figure has a staff, cloak and a long hat. It stares into your very being with a single eye.`,
+            desc: `The carved figure has a staff, cloak, and a long hat. It stares into your very being with a single eye.`,
             onSwing: () => {
                 println(`An enormous spear flies straight through you and into the ground behind you.`)
                 toValhall({ name: ['Gungnir'] })
@@ -29,7 +29,7 @@ const fisherVillageAltar = {
             name: 'Altar',
             desc: `It's a small altar carved inside the ash tree. There's some incence and a bowl of ***mushrooms*** on it.`,
             onSwing: () => {
-                println(`It gives out a long vibration like a bell. The sturdy bowl doesn't break.`)
+                println(`It gives out a long vibration, like a bell. The sturdy bowl doesn't break.`)
             },
         },
         {

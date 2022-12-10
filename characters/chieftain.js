@@ -1,10 +1,10 @@
 const chieftain = {
     name: ['Chieftain', `The Chieftain`],
-    roomId: 'chieftainsHouse',
+    roomId: 'chieftainsHall',
     // printed when the player looks at the character
     desc: `The **Chieftain**'s braided auburn hair is massive. Her sharp red lips contrast the shockingly green left eye, which pierces straight through you with its scrutiny. Her right eye is light blue. She doesn't seem to be a Giant at all.`,
     onSwing: () => {
-        const room = getRoom('chieftainsHouse')
+        const room = getRoom('chieftainsHall')
         println(`You hear a swish as your head drops from your shoulders.`)
         toValhall(room.foes[0])
     },
@@ -18,14 +18,14 @@ const chieftain = {
             option: `***Here*** 's a golden horn. Your Housecarl asked me to give this to you.`,
             removeOnRead: true,
             line: `The **Chieftain**'s eyes widen.
-            "How did you get this?", she asks fervently.`
+            "How did you get this?" she asks fervently.`
         },
         {
             option: `***Can*** I do something for you, Chieftain?`,
             removeOnRead: true,
             prereqs: ['stole'],
             line: `The **Chieftain** looks at you with a hint of suspicion.
-            "Perhaps there is something you could do.", she ponders for a moment.
+            "Perhaps there is something you could do." she ponders for a moment.
             "Would you be willing to TBA"`
         }
     ],

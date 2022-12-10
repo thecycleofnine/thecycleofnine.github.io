@@ -13,12 +13,12 @@ const mountainRidge = {
     items: [
         {
             name: 'top',
-            desc: `There's a gate-like ***arc*** on the top of the mountain, bronze in color. A giant could easily walk through it. The very top of the ***arc*** shoots waves of energy towards the purple sky.`
+            desc: `There's a gate-like ***arc*** on the top of the mountain, bronze in color. A Giant could easily walk through it. The very top of the ***arc*** shoots waves of some kind of energy towards the purple sky.`
         },
         {
             name: 'arc',
-            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move. The metal itself seems to be in constant stationary movement.`,
-            onSwing: () => println(`The arc absorbs the blow like a pond absorbs a falling feather.`)
+            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move ever so slowly. The metal itself seems to be in constant stationary movement.`,
+            onSwing: () => println(`The arc absorbs the blow like a calm pond absorbs the fall of a feather.`)
         },
         {
             name: 'boulder',

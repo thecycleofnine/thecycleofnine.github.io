@@ -8,7 +8,7 @@ const godPole4 = {
         if (player.eyesAreOpen) {
             println(`You feel a playful presence.`)
         } else {
-            println(`You feel playful but there is also something of grave importance here.
+            println(`You feel playful, yet there is also something of grave importance here.
             Manipulation and treachery of some sort? But by whom?`)
         }
     },
@@ -17,7 +17,7 @@ const godPole4 = {
             name: 'pole',
             onSwing: () => println(`The axe stops a few inches away from the target.
             It's as if the blade is unwilling or unable to harm the god pole.`),
-            onEat: () => println(`You try to sink your teeth into the pole but can't connect with it.
+            onEat: () => println(`You try to sink your teeth into the pole, but can't connect with it.
             It's as if your teeth were unwilling or unable to harm the god pole.`),
         }
     ],

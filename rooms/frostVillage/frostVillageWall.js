@@ -2,7 +2,7 @@ const frostVillageWall = {
     id: 'frostVillageWall',
     area: 'Frost village',
     name: `The Wall`,
-    desc: `The lift brought you to the top of the wall. It's slippery up here. You can barely see the bronze arc to the ***west*** where you came from. Impassable mountains cover the landscape on the other side of the village from north to south. The small **Frost Giant** is sitting at the edge of the wall beside you.`,
+    desc: `The lift brought you to the top of the wall. It's slippery up here. You can barely see the bronze arc to the ***west*** where you came from. Impassable mountains cover the landscape on the other side of the village from north to south. A small **Frost Giant** is sitting on the edge of the wall beside you.`,
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`TBAopen`)
@@ -15,8 +15,8 @@ const frostVillageWall = {
             name: 'Flute of Ice',
             desc: `It's a perfectly good flute for playing somber melodies.`,
             broken: false,
-            onTake: () => println(`The small **Frost Giant** hugs the flute forcibly as you try to reach for it. The ***Flute of Ice*** doesn't budge. The **Giant** seems greatly offended.`),
-            onEat: () => println(`The small **Frost Giant** hugs the flute forcibly as you try to reach for it. The ***Flute of Ice*** doesn't budge. The **Giant** seems greatly offended.`),
+            onTake: () => println(`The small **Frost Giant** hugs the flute forcibly as you try to reach for it. The ***Flute of Ice*** doesn't budge from the embrace of the **Giant**. It seems to be greatly offended.`),
+            onEat: () => println(`The small **Frost Giant** hugs the flute forcibly as you try to reach for it. The ***Flute of Ice*** doesn't budge from the embrace of the **Giant**. It seems to be greatly offended.`),
             onSwing: () => {
                 const room = getRoom('frostVillageWall')
                 if (!room.items[0].broken) {
@@ -60,9 +60,9 @@ const frostVillageWall = {
             },
             onSwing: () => {
                 const room = getRoom('frostVillageWall');
-                println(`The crossbow breaks with a mighty lash as the string snaps.`)
+                println(`The crossbow breaks as the icy string snaps and whips the **Giant** in the face.`)
                 const items = room.items.filter(item => item.name !== 'Crossbow of Ice')
-                items[0].desc = `The tension of hatred lingers in the broken crossbow although the string has been released.`
+                items[0].desc = `The tension of hatred lingers, even if the crossbow string has been released.`
                 player.inCombat = false;
                 room.foes[0].isArmed = false;
             }
@@ -81,7 +81,7 @@ const frostVillageWall = {
                     if (giant.hp >= 50) {
                         println(`The small **Frost Giant** is furious. The **Giant**'s blinkless fiery blue gaze is highly disturbing.`)
                     } else if (giant.hp < 40 && giant.hp > 10) {
-                        println(`The small **Frost Giant** is slow and wounded. It's starting to blink slowly every once in a while.`)
+                        println(`The small **Frost Giant** is slow and wounded. It's slowly starting to blink, every once in a while.`)
                     } else {
                         println(`The small **Frost Giant** is badly wounded. It's stumbling.`)
                     }
@@ -125,20 +125,21 @@ const frostVillageWall = {
                 const room = getRoom('frostVillageWall')
                 const foe = room.foes[0];
                 if (foe.isArmed) {
-                    println(`The small **Frost Giant** shoots a last cold look at you and drops to the ground lifeless.`);
+                    println(`The small **Frost Giant** shoots one last cold look at you, and drops to the ground lifeless.`);
                     room.foes[0].onLook = () => println(`The dead **Frost Giant** is slowly decaying into ice and snow.`)
                 } else {
                     println(`The blow sends the small **Frost Giant** flying from the wall.
-              The **Giant** screeches loudly as it falls to the outer side of the wall.`);
+                    The **Giant** screeches loudly as it falls to the outer side of the wall.`);
                     delete room.foes
-                    const gate = getRoom('frostVillageGate').items.push({
+                    const gate = getRoom('frostVillageGate')
+                    gate.items.push({
                         name: 'Dead Frost Giant',
-                        desc: `The face of the dead Frost Giant is full of hatred.`,
+                        desc: `The face of the dead **Frost Giant** is full of hatred.`,
                         onSwing: () => {
                             println(`You're defiling the body of the small **Frost Giant**!`)
                         },
                         onTake: () => {
-                            println(`The body is decaying into ice and snow. It's melting through your fingers.`)
+                            println(`The body is decaying into ice and snow. It's melting through your fingers and cannot be taken.`)
                         }
                     })
                     room.items = room.items.filter(item => item.name !== 'Crossbow of Ice')

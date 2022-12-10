@@ -8,11 +8,11 @@ const spiritWorld5 = {
     onFeel: () => {
         if (player.eyesAreOpen) {
             if (getItemInInventory('Henki')) {
-                println(`It's all mushy around you.
-            Everything is alive and in constant motion.`)
+                println(`It's all mushy around you. 
+                Everything is alive and in constant motion.`)
             } else {
-                println(`You are a disembodied conciousness.
-            There are multiple presences floating around here.`)
+                println(`You are a disembodied conciousness. 
+                There are multiple presences floating around here.`)
             }
         } else {
             println(`TBAclosed`)
@@ -42,28 +42,28 @@ const spiritWorld5 = {
     ],
     exits: [
         {
-            dir: 'north', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'north', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'east', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'east', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'south', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'south', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'west', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'west', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'northeast', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'northeast', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'southeast', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'southeast', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'southwest', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'southwest', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
         {
-            dir: 'northwest', id: 'fisherVillageAltar', block: `There are questions to be asked here.
-      There are questions to be answered here.`},
+            dir: 'northwest', id: 'fisherVillageAltar', block: `There are questions to be asked here. 
+            There are questions to be answered here.`},
     ],
 }

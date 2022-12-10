@@ -2,7 +2,7 @@ const frostLands = {
     id: 'frostLands',
     area: 'Frost lands',
     name: 'Frost lands',
-    desc: `You are standing on a stunning icy plain. The sky has turned from purple to blue and the clouds themselves seem to be frozen. The extreme cold of this land doesn't bother you, surprisingly.
+    desc: `You are standing on a stunning icy plain. The sky has turned from purple to blue, and the clouds themselves seem to be frozen. The extreme cold of this land doesn't bother you, surprisingly.
     An enormous **Frost Giant** is slowly shuffling towards you.`,
     onLook: () => {
         const room = getRoom('frostLands')
@@ -30,23 +30,23 @@ const frostLands = {
                     if (giant.hp >= 60) {
                         println(`The **Frost Giant** is towering over you with the nasty-looking ***Club of Blight*** ready in hand. The **Giant**'s blinkless blue gaze is highly disturbing.`)
                     } else if (giant.hp < 60 && giant.hp > 20) {
-                        println(`The **Frost Giant** is slow and wounded. It's starting to blink slowly every once in a while.`)
+                        println(`The **Frost Giant** is slow and wounded. It's starting to blink, every once in a while.`)
                     } else {
-                        println(`The **Frost Giant** is badly wounded. It's stumbling on the bloodstained ice with its gaze hollow and dim.`)
+                        println(`The **Frost Giant** is badly wounded. It's stumbling on the bloodstained ice, its gaze hollow and dim.`)
                     }
                 } else if (!giant.isArmed) {
-                    println(`The enormous **Frost Giant** has entirely lost its will to fight. It's crouching on a broken artifact of immense sentimental value. It's painful to watch.`);
+                    println(`The enormous **Frost Giant** has entirely lost its will to fight. It's crouching on a broken artifact of deep sentimental value. It's painful to watch.`);
                 } else {
-                    println(`It's a slow **Frost Giant** about 3 meters tall. It's shuffling on the ice on its bare feet, skin pale as snow. It's holding a ***Club of Blight***.`)
+                    println(`It's a slow **Frost Giant** about three meters tall. It's shuffling on the ice on its bare feet, its skin pale as snow. It's holding a ***Club of Blight***.`)
                 }
             },
             onEngage: () => {
                 const room = getRoom('frostLands')
                 room.foes[0].inCombat = true;
                 player.inCombat = true;
-                println(`You try to swing high but the axe only reaches the **Giant**'s hip.`)
-                println(`The tall **Frost Giant** doesn't notice you at first. It's growling as it's trying to locate the source of its pain.`)
-                room.desc = `There's a pale **Frost Giant** towering right in front of you. It's at least 3 meters high.`
+                println(`You try to swing high, but the axe only reaches the **Giant**'s hip.`)
+                println(`The tall **Frost Giant** doesn't notice you at first. There's growling as it's trying to locate the source of its pain.`)
+                room.desc = `There's a pale **Frost Giant** towering right in front of you. It's at least three meters tall.`
             },
             hitDescriptions: [
                 `Your axe cuts deep into the **Giant**'s knee.`,
@@ -77,16 +77,16 @@ const frostLands = {
                 player.inCombat = false;
                 const room = getRoom('frostLands')
                 const foe = room.foes[0];
-                room.desc = `The icy landscape is beautifully bare. The clear blue skies stand still. There's a dead **Frost Giant** laying on the ice.
-          A bronze ***arc*** stands tall to the ***west***.`
+                room.desc = `The icy landscape is beautifully bare. The clear blue skies stand still. There's a dead **Frost Giant** laying on the ice. 
+                A bronze ***arc*** stands tall to the ***west***.`
                 if (foe.isArmed) {
-                    println(`The **Frost Giant** groans in a deep harmonious sound and drops to the ground lifeless.`);
+                    println(`The **Frost Giant** groans in deep, harmonious sounds, and drops to the ground lifeless.`);
                     room.foes[0].onLook = () => println(`The dead **Frost Giant** is slowly decaying into ice and snow.`)
                 } else {
                     println(`You decapitate the crouching **Frost Giant**. The head falls to the ground with a thump.`);
                     room.foes[0].onLook = () => println(`The dead **Frost Giant** is slowly decaying into ice and snow. Its separated head still stares at you.`)
                     room.desc = `The icy landscape is beautifully bare. The clear blue skies stand still. There's a decapitated **Frost Giant** laying on the ice.
-            A bronze ***arc*** stands tall to the ***west***.`
+                    A bronze ***arc*** stands tall to the ***west***.`
                 }
                 delete room.exits[1].block;
             },
@@ -113,7 +113,7 @@ const frostLands = {
         },
         {
             name: 'arc',
-            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move. The metal itself seems to be in constant stationary movement.`
+            desc: `The arc is masterfully constructed. The bronze surface has peculiar carvings all over it. They seem to move slowly. The metal itself seems to be in constant stationary movement.`
         },
     ],
     exits: [

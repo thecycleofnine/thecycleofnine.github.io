@@ -1,5 +1,5 @@
 const demoDisk = {
-  roomId: 'mountainRidge', // the ID of the room the player starts in
+  roomId: 'insideHut', // the ID of the room the player starts in
   roomHistory: [],
   mapLocations: [],
   inputs: [''],
@@ -42,8 +42,8 @@ const demoDisk = {
     frostVillage,
     frostVillageLift,
     frostVillageWall,
-    chieftainsHouseEntrance,
-    chieftainsHouse,
+    chieftainsHallEntrance,
+    chieftainsHall,
     frostVillageShrine,
     frostVillageMine,
     hillside,

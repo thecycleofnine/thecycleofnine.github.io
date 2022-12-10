@@ -7,11 +7,11 @@ const spiritWorld1 = {
     onFeel: () => {
         if (player.eyesAreOpen) {
             if (getItemInInventory('Henki')) {
-                println(`It's all mushy around you.
-          Everything is alive and in constant motion.`)
+                println(`It's all mushy around you. 
+                Everything is alive and in constant motion.`)
             } else {
-                println(`You are a disembodied conciousness.
-          There are multiple presences floating around here.`)
+                println(`You are a disembodied conciousness. 
+                There are multiple presences floating around here.`)
             }
         } else {
             println(`TBAclosed`)

@@ -2,7 +2,7 @@ const godPole6 = {
     id: 'godPole6',
     area: 'Fisher village',
     name: `Sixth wooden pole`,
-    desc: `The carving depicts a beautiful goddess wearing a feathered ***cloak***. She is riding a ***boar*** with two cats beside her, one on each side. The beautiful goddess is holding a sword and and a round shield and her hair is braided with colorful petals and herbs.`,
+    desc: `The carving depicts a beautiful goddess wearing a feathered ***cloak***. She is riding a ***boar*** with two cats beside her, one on each side. The beautiful goddess is holding a sword and and a round shield, and her hair is braided with colorful petals and herbs.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
@@ -25,7 +25,7 @@ const godPole6 = {
         freyja.inCombat = true
         room.items = room.items.filter(i => i.name !== 'boar')
         println(`The feathered ***cloak*** wraps itself around the god pole, which comes alive and soars up to the sky.
-                The cats jump up on the other poles and the **boar** slams down to the ground before you.
+                The cats jump up on the other poles, and the **boar** slams down to the ground before you.
                 *You are now in combat with **Freyja*** and **Hildisvini** the boar.`)
     },
     items: [
@@ -115,7 +115,7 @@ const godPole6 = {
                         println(`Steam is bursting out of the nostrils of **Hildisvini**.
                         The boar is determined to protect its friend.`)
                     } else if (boar.hp < 40 && boar.hp > 10) {
-                        println(`**Hildisvini** is taking deep wheezing breaths. The boar seems fatigued.`)
+                        println(`**Hildisvini** is taking deep, wheezing breaths. The boar seems fatigued.`)
                     } else {
                         println(`**Hildisvini** is wounded badly. It's confused and disoriented.`)
                     }
@@ -131,7 +131,7 @@ const godPole6 = {
             hitDescriptions: [
                 `The axe cuts off a slice of tusk, which is sent flying accross the Fisher village square.`,
                 `It connects and you feel a rib snapping under the weight of the blow.`,
-                `Blood gushes out as you cut deep into the boarskin.`,
+                `Blood gushes out as you cut deep into the boar.`,
                 `The swing slices off an ear. There's an earsplitting squeal.`,
                 `An ear of the boar gets sliced off. **Hildisvini** squeals in agony.`,
                 `Your axe swings into the backbone of the frenzied animal. It breaks with a nasty crack.`,
@@ -183,7 +183,7 @@ const godPole6 = {
                 `The animal bites into your calf in a frenzy.`,
                 `Pain shoots through your spine as **Hildisvini** rams you down to the ground.`,
                 `The boar kicks you with all its might using its hind legs.`,
-                `You are sent flying as the strong boar rushes into your side.`
+                `You are sent flying as the strong boar rushes into your ribcage.`
             ],
             onDeath: () => {
                 const boar = getFoeInRoom('Boar', 'godPole6')
@@ -271,10 +271,10 @@ const godPole6 = {
                 `**Freyja** swirls around in the air with her cloak to avoid the blow.`,
                 `The goddess moves to block the blow with her round shield.`,
                 `There's only a graceful flutter of feathers as **Freyja** uses her ***cloak*** to disappear from your sight momentarily.`,
-                `The shield of the goddess is too quick and deflects the swing away from her.`,
+                `The shield of the goddess is too quick, and deflects the swing away from her.`,
                 `There's a loud clang as **Freyja** blocks the axe with her sword.`,
-                `She quickly points her sword directly at your throat forcing you to stop the swing midway and step back.`,
-                `Her rhythm of movement in the air is too disorienting and you miss embarassingly.`,
+                `She quickly points her sword directly at your throat, forcing you to stop the swing midway and step back.`,
+                `Her rhythm of movement in the air is too disorienting, and you miss embarassingly.`,
                 `But you stop on your tracks because ***roots*** are growing from the ground around your feet!`,
                 `But you are completely blind!
                 You regain your vision after a couple of seconds as the seiðr magic wanes.`,
@@ -288,20 +288,20 @@ const godPole6 = {
                 `The boar **Hildisvini** seizes the moment and sinks its teeth into your leg.`,
                 `**Freyja** rams into you with her shield in a frenzy, causing some nasty bludgeoning damage.`,
                 `**Hildisvini** tackles you from behind as your focus is elsewhere.`,
-                `The **Boar** charges at you causing you to trip as you evade and you hit your head.`,
-                `You hear a chiming sound as **Freyja** activates a baneful jinx causing you to cough up blood.`,
+                `The **Boar** charges at you, causing you to trip as you evade, and you hit your head hard into the ground.`,
+                `You hear a chiming sound as **Freyja** activates a baneful jinx, causing you to cough up blood.`,
                 `**Freyja** mutters something and you feel as if all your limbs are torn off.`,
-                `The goddess casts a hex on you causing your skin to develop painful exploding boils.`,
-                `Suddenly your ears start bleeding heavily as **Freyja** throws a hex at you.`,
+                `The goddess casts a hex on you, causing your skin to develop painful exploding boils.`,
+                `Suddenly your ears start bleeding heavily as **Freyja** throws a baneful hex at you.`,
                 `You feel untolerable pain as your limbs start to dislocate by seiðr magic.`,
                 `There is sharp pain as **Hildisvini** sinks its tusks deep into your calf from behind.`
             ],
             attackDescriptionsBoarDead: [
                 // Hildisvini dead
                 `**Freyja** rams into you with her shield in a frenzy, causing some nasty bludgeoning damage.`,
-                `You hear a chiming sound as **Freyja** activates a baneful jinx causing you to cough up blood.`,
+                `You hear a chiming sound as **Freyja** activates a baneful jinx, causing you to cough up blood.`,
                 `**Freyja** mutters something and you feel as if all your limbs are torn off.`,
-                `The goddess casts a hex on you causing your skin to develop painful exploding boils.`,
+                `The goddess casts a hex on you, causing your skin to develop painful exploding boils.`,
                 `Suddenly your ears start bleeding heavily as **Freyja** throws a hex at you.`,
                 `You feel untolerable pain as your limbs start to dislocate on their own for some reason.`,
                 `The whole village gasps as **Freyja** delivers a colossal blow to your head.`,
@@ -319,12 +319,12 @@ const godPole6 = {
                 const room = getRoom('godPole6')
                 println(`The **Goddess Freyja** loses her Henki spirit and crashes down hard, lifeless.`)
                 // TBA add Freyja character to Hel
-                room.desc = `Where once was a god pole dedicated to the goddess **Freyja** now lies a feast for the crows.`
+                room.desc = `Where once was a god pole dedicated to the goddess **Freyja**, now lies a feast for the crows.`
                 const cloakItem = getItemInRoom('cloak', 'godPole6')
                 cloakItem.name = `Feather cloak`
                 cloakItem.desc = `It was won in battle. It's made out of feathers and it can be used to ***fly to*** places on your ***Map***.`
                 cloakItem.onSwing = () => {
-                    println(`The cloak gets sliced to pieces!`)
+                    println(`The cloak gets sliced to shreds!`)
                     disk.inventory = disk.inventory.filter(i => i.name !== 'Feather cloak')
                 }
                 cloakItem.onEat = () => {

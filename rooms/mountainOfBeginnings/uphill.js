@@ -19,8 +19,8 @@ const uphill = {
             name: 'log',
             desc: `It's a perfectly good wooden log.`,
             onSwing: () => {
-                println(getCharacter('Bearded Fellow').roomId === 'uphill' ? `"Woah there!", shouts the **Bearded Fellow** as he jumps up to evade the swing.
-          "A mighty swing you got, friend!", he compliments you sincerely as he sits back down.` : `It leaves a big dent but the wooden ***log*** is surprisingly sturdy.`)
+                println(getCharacter('Bearded Fellow').roomId === 'uphill' ? `"Woah there!" shouts the **Bearded Fellow** as he jumps up to evade the swing. 
+                "A mighty swing you got, friend!" he compliments you sincerely as he sits back down.` : `It leaves a big dent but the wooden ***log*** is surprisingly sturdy.`)
             }
         }
     ],

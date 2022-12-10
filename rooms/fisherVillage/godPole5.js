@@ -2,7 +2,7 @@ const godPole5 = {
     id: 'godPole5',
     area: 'Fisher village',
     name: `Fifth wooden pole`,
-    desc: `The carving depicts a sly god. A genderfluid god and a shape-shifter god. Below them there are smaller carvings of a ***serpent***, a ***wolf***, a ***girl*** and a peculiar-looking ***horse***.`,
+    desc: `The carving depicts a sly god. A genderfluid god and a shape-shifter god. Below the god, there are smaller carvings of a ***serpent***, a ***wolf***, a ***girl***, and a peculiar-looking ***horse***.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
@@ -13,10 +13,10 @@ const godPole5 = {
             }
         } else {
             if (player.curseOfLoki) {
-                println(`You feel cursed as some kind of trickery is most certainly underway.
+                println(`You feel cursed, as some kind of trickery is most certainly afoot.
                 This place seems to be the source of your illusions.`)
             } else {
-                println(`Some kind of trickery is most certainly underway.
+                println(`Some kind of trickery is most certainly present.
                 Illusions are afoot here.`)
             }
         }
@@ -31,7 +31,7 @@ const godPole5 = {
             name: 'wolf',
             desc: `The pitch black wolf has a smokey appearance. It's guarding a black gate.`,
             onSwing: () => println(`The axe goes straight through the wolf with a puff of smoke, causing no damage.`),
-            onEat: () => println(`You try to grab the ***wolf*** but it's slipping through your fingers as if trying to grab smoke.`),
+            onEat: () => println(`You try to grab the ***wolf***, but it's slipping through your fingers as if trying to grab smoke.`),
         },
         {
             name: 'girl',
@@ -47,7 +47,7 @@ const godPole5 = {
             name: 'horse',
             desc: `The shamanic horse has eight legs. It can take the rider on an ecstatic journey as well as a physical one.`,
             onSwing: () => println(`The best ***horse*** hops over the swing with ease and returns gracefully to its place on the god pole.`),
-            onEat: () => println(`The best ***horse*** gallops agilely on your teeth as you try to catch it into your jaws to no avail.
+            onEat: () => println(`The best ***horse*** gallops agilely on your teeth as you try to catch it into your jaws, but to no avail.
             It returns gracefully to its place on the god pole.`),
         }
     ],

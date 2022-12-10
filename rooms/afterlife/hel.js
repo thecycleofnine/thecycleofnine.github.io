@@ -13,8 +13,7 @@ const hel = {
         if (henki) disk.inventory = disk.inventory.filter(i => i.name !== 'Henki')
         if (room.printDescriptions) {
             if (roomHistory[roomHistory.length-2] === 'frostVillageWall') {
-                println(`You have a faint memory of falling down from a slippery wall in some remote village.
-                It doesn't hurt anymore, though.`)
+                println(`You have a faint memory of falling down from a slippery wall in a remote village. It doesn't hurt anymore, though.`)
             }
             if (roomHistory[roomHistory.length-2] === 'uphill') {
                 println(`You have a faint memory of falling down a steep mountainside.`)
@@ -24,7 +23,7 @@ const hel = {
         room.printDescriptions = true
     },
     onLook: () => println(`You are in a large hall. It's dimly lit but you're able to see the outlines of a very long ***table***.
-    There's a ***throne*** at the other end of the table and someone's sitting in it.`),
+    There's a ***throne*** at the other end of the table, and someone is sitting in it.`),
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`TBAopen`)
@@ -36,11 +35,11 @@ const hel = {
         {
             name: 'table',
             desc: `It's a very long table. Billions of people are feasting at it.
-            There's tons of plant-based ***food*** and ***ale***.
+            There are tons of plant-based ***food*** and ***ale***.
             The dead feasters seem peaceful and undisturbed by your arrival.`,
             onSwing: () => {
                 println(`It makes a sizeable dent to the table.
-                No one seems to pay any mind to you however.`)
+                However, no one seems to pay any mind to you.`)
             }
         },
         {

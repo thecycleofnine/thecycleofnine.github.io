@@ -9,8 +9,8 @@ const mountainTrail = {
         const char = getCharacter('Bearded Fellow')
         char.roomId = 'uphill'
         const room = getRoom('uphill')
-        room.desc = `There's a ***Bearded Fellow*** sitting merrily on a wooden ***log***. He's drinking juniper mead. 
-      To the ***east*** there's a steep path up a foul-looking mountain. The peak is covered in thick sheets of ice. Some kind of energy is rising from the top towards the purple sky.`
+        room.desc = `There's a ***Bearded Fellow*** sitting merrily on a wooden ***log***. He's drinking mead mixed with juniper berries. 
+        To the ***east*** there's a steep path up a foul-looking mountain. The peak is covered in thick sheets of ice. Some kind of energy is rising from the top towards the purple sky.`
     },
     onFeel: () => {
         if (player.eyesAreOpen) {
@@ -47,8 +47,8 @@ const mountainTrail = {
                 room.foes[0].inCombat = true;
                 getRoom('mountainTrail').exits[1].block = `The angry **Frost Giant** steps in front of you as you try to pass.`
                 println(`The ice cracks open under the weight of the swing. The bloodied **Frost Giant** rises slowly from the ground. It fixes its deep blue ***eyes*** upon you.`)
-                getRoom('mountainTrail').desc = `Icy winds create small snow whirlwinds in the air.
-          The path to the ***top*** of the mountain is blocked by a huge **Frost Giant** about to smash you into pieces.`
+                getRoom('mountainTrail').desc = `Icy winds create small snow whirlwinds in the air. 
+                The path to the ***top*** of the mountain is blocked by a huge **Frost Giant** about to smash you into pieces.`
             },
             hitDescriptions: [
                 `Your axe cuts deep into the **Giant**'s shoulder.`,
@@ -79,7 +79,7 @@ const mountainTrail = {
                 println(`The **Frost Giant** drops to the ground lifeless.`)
                 room.foes[0].onLook = () => println(`The dead **Frost Giant** is slowly decaying into snow and ice.`)
                 room.desc = `Icy winds create small snow whirlwinds in the air. There's a **Frost Giant** laying dead on the snow. An ***Eye of Frost*** has dropped out of its decaying body. 
-          The icy mountain peak is to the ***east***.`
+                The icy mountain peak is to the ***east***.`
                 room.items = room.items.filter(item => item.name !== 'eyes')
                 room.items.push({
                     name: 'Frost Giant',
@@ -135,7 +135,7 @@ const mountainTrail = {
         },
         {
             name: 'top',
-            desc: `There's a solemn gate-like arc standing tall on the icy mountain peak. It must be at least 4 meters high. It seems to be emitting some kind of energy towards the sky.`,
+            desc: `There's a solemn gate-like arc standing tall on the icy mountain peak. It must be at least four meters high. It seems to be emitting some kind of energy towards the sky.`,
             onSwing: () => println(`What a concept!`)
         },
         {
@@ -145,8 +145,8 @@ const mountainTrail = {
                 const room = getRoom('mountainTrail')
                 const giant = room.foes[0]
                 if (giant.alive && !giant.partiallyBlinded) {
-                    println(`The axe cuts the ***eyes*** of the **Frost Giant** effortlessly.
-            The **Frost Giant** is partially blinded.`)
+                    println(`The axe cuts the ***eyes*** of the **Frost Giant** effortlessly. 
+                    The **Frost Giant** is partially blinded.`)
                     room.items[2].desc = `The **Giant**'s left eye is splitted diagonally. It's cloudy. The other one is filled with crackling blue thunder.`
                     giant.partiallyBlinded = true
                     if (giant.hp > 20) {
@@ -155,8 +155,8 @@ const mountainTrail = {
                         giant.onDeath()
                     }
                 } else if (giant.alive) {
-                    println(`The **Frost Giant** anticipates your move and evades your swing with ease.
-            The ***Club of Ice*** sweeps to your jaw from below.`)
+                    println(`The **Frost Giant** anticipates your move and evades your swing with ease. 
+                    The ***Club of Ice*** sweeps to your jaw from below.`)
                     if (player.hp > 35) {
                         player.hp -= 35
                     } else {

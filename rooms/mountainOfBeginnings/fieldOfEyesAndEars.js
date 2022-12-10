@@ -2,7 +2,7 @@ const fieldOfEyesAndEars = {
     id: 'fieldOfEyesAndEars',
     area: 'Mountain of beginnings',
     name: 'Field of eyes and ears',
-    desc: `You are standing on a field where one could grow flowers. Instead there are hundreds of ***eyes*** and ***ears*** growing from the dry soil.
+    desc: `You are standing on a field where one could grow pretty flowers. Instead, there are hundreds of ***eyes*** and ***ears*** growing from the dry soil.
     A path to the ***south*** seems to lead down from the mountain range.
     There's a small hut to the ***northeast***.`,
     earsSplitted: false,
@@ -10,7 +10,7 @@ const fieldOfEyesAndEars = {
         const char = getCharacter('Bearded Fellow')
         char.topics = char.uphillTopicsAfterLeaving
         char.chatLog = char.chatLog.filter(t => t !== 'yes')
-        char.onTalk = () => println(`"Hello, friend!", the **Bearded Fellow** booms.
+        char.onTalk = () => println(`"Hello, friend!" the **Bearded Fellow** booms.
         "Have you slain many giants?"`)
     },
     onFeel: () => {
@@ -28,7 +28,7 @@ const fieldOfEyesAndEars = {
                 println(`They are not ripe yet.`)
             },
             onSwing: () => {
-                println(`Some of the eyes explode with a small puff of blue mist. They sound like shattering thin glass spheres.`)
+                println(`Some of the eyes explode into a small puff of blue mist. It sounds like thin glass spheres shattering.`)
             },
             onEat: () => {
                 println(`You start to cough as the eyes puff blue mist into your lungs.`)
@@ -62,7 +62,7 @@ const fieldOfEyesAndEars = {
                             demoDisk.inventory = disk.inventory.filter(item => item.name !== `Heimdallr's Ear`);
                         },
                         onEat: () => {
-                            println(`You munch on the ***Heimdallr's Ear***. It's hairy on the inside.`);
+                            println(`You munch on the ***Heimdallr's Ear***. It's surprisingly hairy on the inside.`);
                             demoDisk.inventory = disk.inventory.filter(item => item.name !== `Heimdallr's Ear`);
                         }
                     })

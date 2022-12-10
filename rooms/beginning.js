@@ -17,10 +17,10 @@ const beginning = {
         You feel alive.`)
         } else {
             if (!disk.helpCommands.includes('take')) disk.helpCommands.push('take');
-            println(`It's all mushy around you.
-        But you feel empty. 
-        There's a faint presence floating around.
-        You feel an urge to ***take*** it.`)
+            println(`It's all mushy around you. 
+            But you feel empty.  
+            There's a faint presence floating around. 
+            You feel an urge to ***take*** it.`)
         }
     },
     items: [
@@ -33,12 +33,12 @@ const beginning = {
                 const room = getRoom('beginning');
                 delete room.exits[0].block;
                 if (!disk.helpCommands.includes('inv')) disk.helpCommands.push('inv');
-                println(`It is a spirit called **Henki**.
-          It circles around you, measuring you.
-          Slowly, you become intertwined with it
-          till death do you part.
-          *Type **inv** to see your inventory.*
-          *Type **help** to see available commands.*`);
+                println(`It is a spirit called **Henki**. 
+                It circles around you, measuring you. 
+                Slowly, you become intertwined with it 
+                till death do you part. 
+                *Type **inv** to see your inventory.* 
+                *Type **help** to see available commands.*`);
             },
             onUse: () => {
                 println(`Your spirit ***Henki*** pihises at ${player.hp} Henki Points (HP).`)
@@ -53,8 +53,8 @@ const beginning = {
     exits: [
         // GO NORTH command leads to the Reception Desk
         {
-            dir: 'north', id: 'rockyPlace', block: `You are still but an empty shell.
-      It's dangerous to go alone.`},
+            dir: 'north', id: 'rockyPlace', block: `You are still but an empty shell. 
+            It's dangerous to go alone.`},
     ],
     music: 'gudernes-vilje.mp3',
 }

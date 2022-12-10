@@ -12,7 +12,7 @@ const hela = {
     },
     // optional callback, run when the player talks to this character
     onTalk: () => {
-        println(`"Yes?", **Hel** asks looking down on you.`)
+        println(`"Yes?" **Hel** asks looking down on you.`)
         const throne = getItemInRoom('throne', disk.roomId)
         throne.desc = `It's entirely made of fingernails.`
     },
@@ -24,14 +24,14 @@ const hela = {
         {
             option: `***What*** is this place?`,
             removeOnRead: true,
-            line: `"Don't mock me, human", **Hel** says indignantly.
+            line: `"Don't mock me, human" **Hel** says indignantly.
             "This is obviously my hall, Hel."`
         },
         {
             option: `***You*** have the same name as this place?`,
             removeOnRead: true,
             prereqs: ['what'],
-            line: `"Well, of course", **Hel** responds proudly.
+            line: `"Well, of course" **Hel** responds proudly.
             "This is my hall. These are my people. People who have nowhere else to go. People who have died an inglorious death."`
         },
         {
@@ -44,7 +44,7 @@ const hela = {
         {
             option: `***How*** can I get out of here?`,
             removeOnRead: true,
-            line: `"Out of here?", **Hel** repeats slightly amused.
+            line: `"Out of here?" **Hel** repeats slightly amused.
             "The only way for you to get out of here would be if all things wept for you, my dear."`
         },
         {
@@ -66,7 +66,7 @@ const hela = {
             prereqs: ['wept'],
             removeOnRead: true,
             line: `"Oh, pish posh." **Hel** waves her hand belittlingly.
-            "Feast at my table, newling", she says encouragingly.
+            "Feast at my table, newling" she says encouragingly.
             "I hear the food is quite delightful."`
         },
         {
@@ -74,11 +74,11 @@ const hela = {
             prereqs: ['wept'],
             onSelected: () => {
                 if (!this.allThingsSelectedAlready) {
-                    println(`"Ha!", **Hel** chortles sarcastically.
+                    println(`"Ha!" **Hel** chortles sarcastically.
                     "Quite a fellow we've got here! Are you sure it is not just yourself who is weeping?"
                     "Sit down, newling. Have a drink."`)
                 } else {
-                    println(`"Sit down, dear. No one is weeping for you", **Hel** says irritably.`)
+                    println(`"Sit down, dear. No one is weeping for you" **Hel** says irritably.`)
                     println(`*The conversation has ended.*`)
                     endConversation()
                 }
@@ -100,7 +100,7 @@ const hela = {
         }, {
             option: `***Sure***, I'll stay.`,
             removeOnRead: true,
-            line: `"Excellent", **Hel** replies with a smile-like expression on her face.
+            line: `"Excellent" **Hel** replies with a smile-like expression on her face.
             "Eat and drink as much as you like!"`,
             onSelected: () => {
                 const char = getCharacter('Hel')

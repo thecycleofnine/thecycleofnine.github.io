@@ -13,7 +13,7 @@ const trickster = {
         const room = getRoom(disk.roomId)
         if (room.id === 'hel') {
             println(`The **Trickster** looks around as if to make sure nobody is listening.
-            "I couldn't but overhear your discussion with **Hel**", says the **Trickster** with a smirk on his face.`)
+            "I couldn't but overhear your discussion with **Hel**" says the **Trickster** with a smirk on his face.`)
         }
         room.onLook = () => println(`You are in a large hall. It's dark but you're able to see the outlines of a very long ***table***.
         There's a ***throne*** at the other end of the table and **Hel** is sitting in it.
@@ -33,7 +33,7 @@ const trickster = {
             option: `***How*** could you alleviate my situation?`,
             removeOnRead: true,
             prereqs: ['oh'],
-            line: `"You see", the **Trickster** waves his fingertips around elegantly.
+            line: `"You see" the **Trickster** waves his fingertips around elegantly.
             "I happen to be somewhat proficient in all sorts of tricks and illusions."
             "I could be of great help to you, my pale friend."`
         },
@@ -41,7 +41,7 @@ const trickster = {
             option: `***And*** what would you ask in return?`,
             removeOnRead: true,
             prereqs: ['how'],
-            line: `"Oh, just a small task.", the **Trickster** assures smilingly.
+            line: `"Oh, just a small task." the **Trickster** assures smilingly.
             "It's nothing, really. You would just need to fetch something for me."`,
             onSelected: () => {
                 const char = getCharacter('Trickster')
@@ -49,7 +49,7 @@ const trickster = {
                     const room = getRoom(disk.roomId)
                     if (room.id === 'hel') {
                         println(`The **Trickster** looks around as if to make sure nobody is listening.
-                        "Well?", he asks very quietly.`)
+                        "Well?" he asks very quietly.`)
                     }
                 }
             }
@@ -58,7 +58,7 @@ const trickster = {
             option: `***What*** would I be fetching?`,
             removeOnRead: true,
             prereqs: ['and'],
-            line: `"Oh, nothing of importance", says the **Trickster** innocently.
+            line: `"Oh, nothing of importance" says the **Trickster** innocently.
             "Just a small plant from the center of Hodr's Forest, that's all."`
         },{
             option: `***Where*** is Hodr's Forest again?`,
@@ -71,7 +71,7 @@ const trickster = {
             option: `***Done***. It's a deal.`,
             removeOnRead: true,
             prereqs: ['and', 'what'],
-            line: `"Indeed", says the **Trickster** trying to conceal his excitement.
+            line: `"Indeed" says the **Trickster** trying to conceal his excitement.
             "Just talk to **Hel** again and I'll take care of the rest. A simple hearing spell should do the trick."
             "I'll find you when you have obtained the plant from Hodr's Forest..."`,
             onSelected: () => {
@@ -95,10 +95,10 @@ const trickster = {
                     option: `***All*** things weep at my death.`,
                     prereqs: ['wept'],
                     removeOnRead: true,
-                    line: `"Wait...", **Hel** says incredulously.
+                    line: `"Wait..." **Hel** says incredulously.
                     "It really does seem to be so. I-I can hear them weeping!"
                     "I can hear the rocks and the ponds, the animals and all of the elements. I can hear how the people are weeping for you. They are all weeping!"
-                    "What have you done?", **Hel** asks in disbelief.`,
+                    "What have you done?" **Hel** asks in disbelief.`,
                     onSelected: () => {
                         const hela = getCharacter('Hel')
                         hela.topics = hela.topics.filter(t => !t.option.includes('***What***') && !t.option.includes('***It***'))
@@ -163,14 +163,14 @@ const trickster = {
             prereqs: ['and'],
             line: `The **Trickster** sighs.
             "Well, I'll be here should you change your mind."
-            "Not for long, though", the **Trickster** adds as you start to walk away.`,
+            "Not for long, though" the **Trickster** adds as you start to walk away.`,
             onSelected: () => {
                 const char = getCharacter('Trickster')
                 char.onTalk = () => {
                     const room = getRoom(disk.roomId)
                     if (room.id === 'hel') {
                         println(`The **Trickster** looks around as if to make sure nobody is listening.
-                        "Well?", he asks very quietly.`)
+                        "Well?" he asks very quietly.`)
                     }
                 }
                 endConversation()
@@ -180,15 +180,15 @@ const trickster = {
             option: `***Something*** seems off about this.`,
             removeOnRead: true,
             prereqs: ['and'],
-            line: `"Oh, not at all, not at all", the **Trickster** reassures with a warm smile on his face.
-            "Do we have a deal?", he asks gleam in his eyes.`
+            line: `"Oh, not at all, not at all" the **Trickster** reassures with a warm smile on his face.
+            "Do we have a deal?" he asks gleam in his eyes.`
         }
     ],
     topicsAfterFetchingMistletoe: [
         {
             option: `***Here*** 's the mistletoe.`,
             removeOnRead: true,
-            line: `"An honest bargain", the **Trickster** vanishes the mistletoe with a wave of his hand.
+            line: `"An honest bargain" the **Trickster** vanishes the mistletoe with a wave of his hand.
             "Though I can't but feel a little swindled."`,
             onSelected: () => {
                 const room = getRoom(disk.roomId)
@@ -202,7 +202,7 @@ const trickster = {
             option: `***On*** second thought, I think I will keep this mistletoe.`,
             removeOnRead: true,
             line: `The **Trickster** gasps and tries to look most betrayed.
-            "Well, I wouldn't have wanted it anyway", he says crossing his hands accross his chest.
+            "Well, I wouldn't have wanted it anyway" he says crossing his hands accross his chest.
             "I wouldn't have ***use***d it to make anything anyway."`,
             onSelected: () => {
                 const char = getCharacter('Trickster')
@@ -212,13 +212,13 @@ const trickster = {
             option: `***Swindled*** how? What are you talking about?`,
             removeOnRead: true,
             prereqs: ['here'],
-            line: `"An honorable fellow like yourself would surely feel a smidge of guilt for receiving so much for giving so little, yes?", the **Trickster** says guilelessly.`
+            line: `"An honorable fellow like yourself would surely feel a smidge of guilt for receiving so much for giving so little, yes?" the **Trickster** says guilelessly.`
         },
         {
             option: `***What*** can be made of this mistletoe?`,
             removeOnRead: true,
             prereqs: ['on'],
-            line: `"Oh, nothing", the **Trickster** pretends to have lost all interest.
+            line: `"Oh, nothing" the **Trickster** pretends to have lost all interest.
             "Good day."`,
             onSelected: () => {
                 endConversation()
@@ -226,7 +226,7 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster vanishes into thin air.***`)
                 const room = getRoom(disk.roomId)
-                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning against a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
                 const item = getItemInInventory('Mistletoe')
                 item.onUse = () => {
@@ -249,13 +249,13 @@ const trickster = {
             option: `***Good***.`,
             removeOnRead: true,
             prereqs: ['on'],
-            line: `"Good", the **Trickster** replies back.`
+            line: `"Good" the **Trickster** replies back.`
         },
         {
             option: `***Thanks***.`,
             prereqs: ['this'],
             removeOnRead: true,
-            line: `"Not at all", the **Trickster** responds gracefully.
+            line: `"Not at all" the **Trickster** responds gracefully.
             "You can ***use*** it to make something interesting." he says mysteriously.`,
             onSelected: () => {
                 endConversation()
@@ -263,7 +263,7 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster vanishes from sight.***`)
                 const room = getRoom(disk.roomId)
-                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning against a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
             }
         },
@@ -279,7 +279,7 @@ const trickster = {
                 char.roomId = ''
                 println(`***The Trickster has left.***`)
                 const room = getRoom(disk.roomId)
-                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning against a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
                 room.desc += `\nThere's a ***Mistletoe dart*** on the ground.`
                 room.items.push({
@@ -312,7 +312,7 @@ const trickster = {
             option: `***This*** is not honorable, I admit. There something more I could do for you?`,
             removeOnRead: true,
             prereqs: ['swindled'],
-            line: `"Honest to the core", the **Trickster** praises and waves his hand slightly.
+            line: `"Honest to the core" the **Trickster** praises and waves his hand slightly.
             The mistletoe appears on his palm again.
             "Honesty like that should be rewarded."
             ***The Trickster gives you a Mistletoe dart.***`,
@@ -342,7 +342,7 @@ const trickster = {
             *The **Trickster** vanishes from sight.*`,
             onSelected: () => {
                 const room = getRoom(disk.roomId)
-                room.desc = room.desc.replace(`\nThe **Trickster** is leaning at a tree, watching you.`, '')
+                room.desc = room.desc.replace(`\nThe **Trickster** is leaning against a tree, watching you.`, '')
                 room.exits.forEach(e => delete e.block)
                 const char = getCharacter('Trickster')
                 char.roomId = ''

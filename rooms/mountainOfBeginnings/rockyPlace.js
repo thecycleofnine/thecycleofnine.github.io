@@ -8,14 +8,14 @@ const rockyPlace = {
     onEnter: () => {
         playAudio('dypt-inne-i-skogen.mp3');
         const room = getRoom('rockyPlace');
-        room.desc = `You are on a mountain range. The cloudy sky is dark purple. There are **weeds** swaying in the light breeze beside you glowing violet.
-                    You can try to ***look at*** them.
-                    The **tree** from which you emerged is to the ***south***.`;
+        room.desc = `You are on a mountain range. The cloudy sky is dark purple. There are **weeds** swaying in the light breeze beside you glowing violet. 
+        You can try to ***look at*** them. 
+        The **tree** from which you emerged is to the ***south***.`;
     },
     onFeel: () => {
         if (player.eyesAreOpen) {
             println(`It's rocky beneath your feet but you can still feel a fleeing sensation of mushiness.
-        *You can sense available directions with **go**.*`)
+            *You can sense available directions with **go**.*`)
         } else {
             println(`TBAclosed`)
         }
@@ -23,8 +23,8 @@ const rockyPlace = {
     items: [
         {
             name: 'weeds',
-            desc: `The ***weeds*** are emitting a violet glow.
-        They are fascinating.`,
+            desc: `The ***weeds*** are emitting a violet glow. 
+            They are fascinating.`,
             onEat: () => println(`You munch on the glowing violet **weeds**. They are now glowing inside you.`)
         },
         {
@@ -33,14 +33,14 @@ const rockyPlace = {
         },
         {
             name: 'womb',
-            desc: `The womb is closed.
-        It's connected to the base of the tree. You can hear new life pulsating inside.`,
+            desc: `The womb is closed. 
+            It's connected to the base of the tree. You can hear new life pulsating inside.`,
             onEat: () => println(`omg`)
         },
         {
             name: 'moon',
-            desc: `There is a single moon in the sky. It's Blue and mysterious.
-        It's pretty old.`,
+            desc: `There is a single moon in the sky. It's Blue and mysterious. 
+            It's pretty old.`,
         },
     ],
     exits: [

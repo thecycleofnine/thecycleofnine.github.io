@@ -2,8 +2,8 @@ const godPole7 = {
     id: 'godPole7',
     area: 'Fisher village',
     name: `Seventh wooden pole`,
-    desc: `The carving depicts a fertility god of godly dimensions. There's a ***pole*** within the pole and everything there needs to be.
-    The god is holding an ***antler*** and is accompanied by a ***boar***.`,
+    desc: `The carving depicts a fertility god of godly dimensions. There's a ***pole*** within the pole, and everything there needs to be.
+    The god is holding a sharp ***antler***, and is accompanied by a ***boar***.`,
     printDescriptions: true,
     onFeel: () => {
         if (player.eyesAreOpen) {
@@ -24,14 +24,14 @@ const godPole7 = {
             name: 'antler',
             desc: `It seems to be a replacement for a sword once bargained away.`,
             onSwing: () => println(`It can take a hit!`),
-            onEat: () => println(`You try to munch on the ***antler***
-            but it's too sharp!`),
+            onEat: () => println(`You try to munch on the ***antler***. 
+            But it's too sharp!`),
         },
         {
             name: 'boar',
             desc: `The boar has golden bristles in its mane. They glow in the dark.`,
             onSwing: () => println(`The ***antler*** shifts to block the blow.`),
-            onEat: () => println(`You try to take a bite out of the ***boar*** but the ***antler*** shifts to protect it.`),
+            onEat: () => println(`You try to take a bite out of the ***boar***, but the ***antler*** shifts to protect it.`),
         }
     ],
     exits: [

@@ -7,11 +7,11 @@ const spiritWorld4 = {
     onFeel: () => {
         if (player.eyesAreOpen) {
             if (getItemInInventory('Henki')) {
-                println(`It's all mushy around you.
-            Everything is alive and in constant transition.`)
+                println(`It's all mushy around you. 
+                Everything is alive and in constant transition.`)
             } else {
-                println(`You are a disembodied conciousness.
-            There are multiple presences floating around here.`)
+                println(`You are a disembodied conciousness. 
+                There are multiple presences floating around here.`)
             }
         } else {
             println(`TBAclosed`)
@@ -23,8 +23,8 @@ const spiritWorld4 = {
             name: 'Henki',
             desc: `It is a formless spirit. A life force. It pihises.`,
             onSwing: () => {
-                println(`The henki swirls and joins the axe. The henki is swinging the axe. The axe is swinging itself.
-          Everything is swinging, swimming and singing.`)
+                println(`The henki swirls and joins the axe. The henki is swinging the axe. The axe is swinging itself. 
+                Everything is swinging, swimming and singing.`)
             },
             onEat: () => println(`Why eat something that is already you?`)
         }

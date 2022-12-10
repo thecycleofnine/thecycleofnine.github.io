@@ -16,15 +16,15 @@ const hillside = {
     items: [
         {
             name: 'carriage',
-            desc: `It's an abandoned and dilapitated carriage. It's missing a wheel.
-            There's a wooden ***chest*** inside.`,
+            desc: `It's an abandoned, dilapitated carriage. It's missing a wheel.
+            There's a wooden ***chest*** inside the carriage.`,
             onSwing: () => println(`The rotten carriage breaks down even further.`),
         }, {
             name: 'chest',
             desc: `It was a perfectly good chest once.`,
             onSwing: () => println(`The rotten wood bends and breaks with a thump.`),
             onOpen: () => {
-                println(`The chest opens with a damp squeak. It's empty.`)
+                println(`The chest opens with a damp sound. It's empty.`)
             }
         }
     ],

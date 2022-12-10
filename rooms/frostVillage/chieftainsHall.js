@@ -1,14 +1,14 @@
-const chieftainsHouse = {
-    id: 'chieftainsHouse',
+const chieftainsHall = {
+    id: 'chieftainsHall',
     area: 'Frost village',
-    name: `Chieftain's House`,
-    desc: `The house is a long hall. Wooden tables stand decorated on each side filling the whole depth of the hall. There's a big fireplace at the center. Small Giant servants hustle around hurrily.
-    The **Chieftain** sits comfortably on a throne covered with wolfskins.`,
+    name: `Chieftain's Hall`,
+    desc: `You are in the hall of the Chieftain. Wooden tables stand decorated on each side, filling the whole depth of the hall. There's a big fireplace at the center. Small Giant servants hustle around hurrily.
+    The **Chieftain** sits comfortably on a throne, covered with wolfskins.`,
     onEnter: () => {
-        const entrance = getRoom('chieftainsHouseEntrance')
+        const entrance = getRoom('chieftainsHallEntrance')
         entrance.foes = []
         const housecarl = getCharacter('housecarl')
-        housecarl.roomId = 'chieftainsHouse'
+        housecarl.roomId = 'chieftainsHall'
     },
     onFeel: () => {
         if (player.eyesAreOpen) {
@@ -25,7 +25,7 @@ const chieftainsHouse = {
             inCombat: false,
             isArmed: true,
             onEngage: () => {
-                const room = getRoom('chieftainsHouseEntrance')
+                const room = getRoom('chieftainsHallEntrance')
                 toValhall(room.foes[0])
             },
             hitDescriptions: [
